@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title -->
+    <title>Shubham Events</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Material Design Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#0B0805',
+                        secondary: '#F6F0E8',
+                        accent: '#C8A96A',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Smooth Scroll Behavior -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-primary text-secondary font-body">
+
+    <!-- ============================= -->
+    <!-- Navigation Bar -->
+    <!-- ============================= -->
+
+    <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
+
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+
+            <!-- Brand -->
+            <div class="font-display text-2xl text-secondary tracking-wide">
+                Shubham Events
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-10 font-body text-sm text-gray-300">
+
+                <a href="#" class="hover:text-accent transition duration-300">Home</a>
+
+                <a href="#vision" class="hover:text-accent transition duration-300">
+                The Vision
+            </a>
+
+                <a href="#canvas" class="hover:text-accent transition duration-300">
+                Events
+            </a>
+
+                <a href="#architect" class="hover:text-accent transition duration-300">
+                Pricing
+            </a>
+
+                <a href="#contact" class="hover:text-accent transition duration-300">
+                Contact
+            </a>
+
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="menuBtn" class="text-secondary focus:outline-none">
+                <span class="material-icons text-3xl">menu</span>
+            </button>
+            </div>
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-black/90 backdrop-blur-lg border-t border-white/10">
+
+            <div class="flex flex-col items-center py-6 space-y-6 text-gray-300 font-body">
+
+                <a href="#" class="hover:text-accent transition">Home</a>
+                <a href="#vision" class="hover:text-accent transition">The Vision</a>
+                <a href="#canvas" class="hover:text-accent transition">Events</a>
+                <a href="#architect" class="hover:text-accent transition">Pricing</a>
+                <a href="#contact" class="hover:text-accent transition">Contact</a>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <!-- ============================= -->
+    <!-- End Navigation -->
+    <!-- ============================= -->
+
+    <!-- ============================= -->
+    <!-- Page Wrapper Start -->
+    <!-- ============================= -->
+    <main class="w-full overflow-x-hidden">
+
+        <!-- Sections will be built here step-by-step -->
+        <!-- ============================= -->
+        <!-- Section 1: Hero (The Hook) -->
+        <!-- ============================= -->
+        <section class="relative w-full h-screen overflow-hidden">
+
+            <!-- Background Layers -->
+            <div id="hero-bg-container" class="absolute inset-0">
+
+                <!-- Image Layer 1 -->
+                <img id="heroImg1" class="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-[2000ms]" src="https://i.pinimg.com/1200x/35/0c/45/350c45f37dc302e56822cd0e01dcadc0.jpg" alt="Indian Wedding">
+
+                <!-- Image Layer 2 -->
+                <img id="heroImg2" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-[2000ms]" src="" alt="Hero Background">
+
+            </div>
+
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 bg-black/60"></div>
+
+            <!-- Content -->
+            <div class="relative z-10 h-full flex items-center justify-center text-center px-6">
+
+                <div class="max-w-3xl">
+
+                    <h1 class="font-display text-4xl md:text-6xl text-white leading-tight mb-6">
+                        Crafting Timeless Celebrations
+                    </h1>
+
+                    <p class="text-gray-300 text-lg md:text-xl mb-8">
+                        Where tradition meets elegance — curated experiences for life’s most meaningful moments.
+                    </p>
+
+                    <a href="#canvas">
+                        <button class="px-8 py-3 bg-accent text-white rounded-full hover:scale-105 transition">
+                Explore Events
+            </button></a>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ============================= -->
+        <!-- End Hero Section -->
+        <!-- ============================= -->
+
+        <!-- ============================= -->
+        <!-- Section 2: The Vision (The Why) -->
+        <!-- ============================= -->
+        <section id="vision" class="w-full bg-secondary text-primary py-28 md:py-36">
+
+            <div class="max-w-6xl mx-auto px-6">
+
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <h2 class="font-display text-4xl md:text-5xl mb-6 leading-tight">
+                        More Than Events — <br class="hidden md:block">
+                        <span class="text-accent">Experiences With Soul</span>
+                    </h2>
+
+                    <p class="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        We believe events are not just gatherings, but stories waiting to be told — crafted with intention, emotion, and an eye for timeless elegance.
+                    </p>
+                </div>
+
+                <!-- Content Grid -->
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+
+                    <!-- Left: Text Content -->
+                    <div class="space-y-8">
+
+                        <p class="font-body text-gray-700 leading-relaxed text-lg">
+                            Every celebration holds a deeper meaning — a union, a milestone, a vision brought to life. Our purpose is to translate those emotions into immersive environments that feel effortless yet unforgettable.
+                        </p>
+
+                        <p class="font-body text-gray-700 leading-relaxed text-lg">
+                            With a refined approach to design, planning, and execution, we orchestrate every detail to ensure your event flows seamlessly — allowing you to be fully present in the moments that matter most.
+                        </p>
+
+                        <!-- Signature Line -->
+                        <div class="flex items-center gap-4 pt-4">
+                            <span class="material-icons text-accent text-3xl">auto_awesome</span>
+                            <span class="font-display text-xl">
+                        Designed with intention. Delivered with grace.
+                    </span>
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Visual Placeholder -->
+                    <img src="https://images.unsplash.com/photo-1529636798458-92182e662485?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover" alt="Event Styling" />
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ============================= -->
+        <!-- End Vision Section -->
+        <!-- ============================= -->
+
+        <!-- ============================= -->
+        <!-- Section 3: The Canvas (Event Categories) -->
+        <!-- ============================= -->
+        <section class="w-full bg-primary text-secondary py-28 md:py-36" id="canvas">
+
+            <div class="max-w-6xl mx-auto px-6">
+
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <h2 class="font-display text-4xl md:text-5xl mb-6 leading-tight">
+                        A Canvas for Every <span class="text-accent">Occasion</span>
+                    </h2>
+
+                    <p class="font-body text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                        From deeply personal celebrations to large-scale professional gatherings, we shape each event with a distinct identity and refined execution.
+                    </p>
+                </div>
+
+                <!-- Grid -->
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                    <!-- Weddings -->
+                    <div onclick="openGallery('Weddings')" class="group relative h-[420px] rounded-2xl overflow-hidden cursor-pointer">
+
+                        <!-- <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" /> -->
+                        <img src="card-images/wedding-2.jfif" class="absolute inset-0 w-full h-full object-cover" />
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                        <div class="absolute bottom-0 p-8">
+                            <h3 class="font-display text-2xl text-white mb-2">Weddings</h3>
+                            <p class="text-gray-300 text-sm">Timeless celebrations</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Birthdays -->
+                    <div onclick="openGallery('Birthdays')" class="group relative h-[420px] rounded-2xl overflow-hidden cursor-pointer">
+
+                        <!-- <img src="https://images.unsplash.com/photo-1602631985686-1bb0e6a8696e?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" /> -->
+                        <img src="card-images/happy-birthday-2.jfif" class="absolute inset-0 w-full h-full object-cover" />
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                        <div class="absolute bottom-0 p-8">
+                            <h3 class="font-display text-2xl text-white mb-2">Birthdays</h3>
+                            <p class="text-gray-300 text-sm">Vibrant & joyful moments</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Engagements -->
+                    <div onclick="openGallery('Engagements')" class="group relative h-[420px] rounded-2xl overflow-hidden cursor-pointer">
+
+                        <!-- <img src="https://images.unsplash.com/photo-1594736797933-d0b22c52f5c4?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" /> -->
+                        <img src="card-images/engagement-2.jfif" class="absolute inset-0 w-full h-full object-cover" />
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                        <div class="absolute bottom-0 p-8">
+                            <h3 class="font-display text-2xl text-white mb-2">Engagements</h3>
+                            <p class="text-gray-300 text-sm">Elegant beginnings</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Conferences -->
+                    <div onclick="openGallery('Conferences')" class="group relative h-[420px] rounded-2xl overflow-hidden cursor-pointer">
+
+                        <!-- <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" /> -->
+                        <img src="card-images/conference-1.jfif" class="absolute inset-0 w-full h-full object-cover" />
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                        <div class="absolute bottom-0 p-8">
+                            <h3 class="font-display text-2xl text-white mb-2">Conferences</h3>
+                            <p class="text-gray-300 text-sm">Professional & seamless</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Housewarming -->
+                    <div onclick="openGallery('Housewarming')" class="group relative h-[420px] rounded-2xl overflow-hidden cursor-pointer">
+
+                        <!-- <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" /> -->
+                        <img src="card-images/house-warming-1.jfif" class="absolute inset-0 w-full h-full object-cover" />
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                        <div class="absolute bottom-0 p-8">
+                            <h3 class="font-display text-2xl text-white mb-2">Housewarming</h3>
+                            <p class="text-gray-300 text-sm">Warm beginnings & sacred spaces</p>
+                        </div>
+
+                    </div>
+
+                    <!-- Custom (Editable Later) -->
+                    <div onclick="openGallery('Custom')" class="group relative h-[420px] rounded-2xl overflow-hidden cursor-pointer">
+
+                        <img src="https://images.unsplash.com/photo-1505236858219-8359eb29e329?q=80&w=800&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover" />
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+
+                        <div class="absolute bottom-0 p-8">
+                            <h3 class="font-display text-2xl text-white mb-2">Custom Events</h3>
+                            <p class="text-gray-300 text-sm">Tailored experiences beyond categories</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ============================= -->
+        <!-- End Canvas Section -->
+        <!-- ============================= -->
+
+        <!-- <div id="galleryModal" class="fixed inset-0 z-50 hidden bg-black/95"> -->
+        <div id="galleryModal" class="fixed inset-0 z-50 hidden bg-black/95 transition-opacity duration-500">
+            <!-- Scrollable Wrapper -->
+            <div class="w-full h-full overflow-y-auto">
+
+                <!-- Centered Container -->
+                <div class="max-w-7xl mx-auto px-6 py-20">
+
+                    <!-- Header Block -->
+                    <div class="flex justify-between items-start mb-16">
+
+                        <div class="max-w-2xl">
+                            <h2 id="galleryTitle" class="font-display text-4xl md:text-5xl text-white mb-4 leading-tight"></h2>
+
+                            <div class="w-16 h-[2px] bg-accent mb-6"></div>
+
+                            <p id="galleryDescription" class="text-gray-300 leading-relaxed text-base md:text-lg"></p>
+                        </div>
+
+                        <!-- Close -->
+                        <button id="closeBtn" class="text-white hover:text-accent transition mt-2">
+                    <span class="material-icons text-3xl">close</span>
+                </button>
+
+                    </div>
+
+                    <!-- Gallery Grid -->
+                    <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ============================= -->
+        <!-- Section: The Architect (Pricing Builder) -->
+        <!-- ============================= -->
+        <section id="architect" class="w-full bg-secondary text-primary py-28 md:py-36">
+
+            <div class="max-w-7xl mx-auto px-6">
+
+                <!-- Header -->
+                <div class="text-center mb-20">
+                    <h2 class="font-display text-4xl md:text-5xl mb-6">
+                        The <span class="text-accent">Architect</span>
+                    </h2>
+                    <p class="font-body text-lg text-gray-600 max-w-2xl mx-auto">
+                        Design your event experience. Select your foundation, refine it with enhancements, and watch your vision come to life.
+                    </p>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-12">
+
+                    <!-- ================= BASE PACKAGES ================= -->
+                    <div class="lg:col-span-2">
+
+                        <h3 class="font-display text-2xl mb-8">Choose Your Event</h3>
+
+                        <div class="grid sm:grid-cols-2 gap-6 mb-14">
+
+                            <!-- Base Card -->
+                            <div class="base-card border border-gray-300 p-8 cursor-pointer transition duration-300 hover:border-accent" data-price="50000">
+                                <span class="material-icons text-accent text-3xl mb-4">favorite</span>
+                                <h4 class="font-display text-xl mb-2">Wedding</h4>
+                                <p class="text-gray-600 text-sm mb-4">Elegant full-scale celebration</p>
+                                <p class="font-medium">₹50,000</p>
+                            </div>
+
+                            <div class="base-card border border-gray-300 p-8 cursor-pointer transition duration-300 hover:border-accent" data-price="30000">
+                                <span class="material-icons text-accent text-3xl mb-4">business_center</span>
+                                <h4 class="font-display text-xl mb-2">Conference</h4>
+                                <p class="text-gray-600 text-sm mb-4">Professional corporate setup</p>
+                                <p class="font-medium">₹30,000</p>
+                            </div>
+
+                            <div class="base-card border border-gray-300 p-8 cursor-pointer transition duration-300 hover:border-accent" data-price="20000">
+                                <span class="material-icons text-accent text-3xl mb-4">celebration</span>
+                                <h4 class="font-display text-xl mb-2">Birthday</h4>
+                                <p class="text-gray-600 text-sm mb-4">Joyful personalized celebration</p>
+                                <p class="font-medium">₹20,000</p>
+                            </div>
+
+                            <div class="base-card border border-gray-300 p-8 cursor-pointer transition duration-300 hover:border-accent" data-price="25000">
+                                <span class="material-icons text-accent text-3xl mb-4">diamond</span>
+                                <h4 class="font-display text-xl mb-2">Engagement</h4>
+                                <p class="text-gray-600 text-sm mb-4">Intimate elegant gathering</p>
+                                <p class="font-medium">₹25,000</p>
+                            </div>
+
+                        </div>
+
+                        <!-- ================= ADD-ONS ================= -->
+                        <h3 class="font-display text-2xl mb-8">Enhancements</h3>
+
+                        <div class="grid sm:grid-cols-2 gap-6">
+
+                            <div class="addon-card border border-gray-300 p-6 cursor-pointer transition duration-300 hover:border-accent" data-price="10000">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-medium">Premium Catering</h4>
+                                        <p class="text-sm text-gray-500">Luxury dining experience</p>
+                                    </div>
+                                    <span class="text-sm">+₹10,000</span>
+                                </div>
+                            </div>
+
+                            <div class="addon-card border border-gray-300 p-6 cursor-pointer transition duration-300 hover:border-accent" data-price="8000">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-medium">Photography</h4>
+                                        <p class="text-sm text-gray-500">Professional coverage</p>
+                                    </div>
+                                    <span class="text-sm">+₹8,000</span>
+                                </div>
+                            </div>
+
+                            <div class="addon-card border border-gray-300 p-6 cursor-pointer transition duration-300 hover:border-accent" data-price="5000">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-medium">VIP Seating</h4>
+                                        <p class="text-sm text-gray-500">Exclusive arrangements</p>
+                                    </div>
+                                    <span class="text-sm">+₹5,000</span>
+                                </div>
+                            </div>
+
+                            <div class="addon-card border border-gray-300 p-6 cursor-pointer transition duration-300 hover:border-accent" data-price="7000">
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <h4 class="font-medium">Extended Hours</h4>
+                                        <p class="text-sm text-gray-500">Extra time coverage</p>
+                                    </div>
+                                    <span class="text-sm">+₹7,000</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- ================= TOTAL PANEL ================= -->
+                    <div class="lg:sticky top-24 h-fit border border-gray-300 p-10 bg-white shadow-sm">
+
+                        <h3 class="font-display text-2xl mb-6">Estimated Total</h3>
+
+                        <p id="totalPrice" class="text-4xl font-display mb-8 text-accent">
+                            ₹0
+                        </p>
+
+                        <button class="w-full py-4 bg-accent text-primary uppercase tracking-widest text-sm hover:opacity-90 transition">
+                    Inquire Now
+                </button>
+
+                        <p class="text-xs text-gray-500 mt-4">
+                            Final pricing may vary based on customization and scale.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ============================= -->
+        <!-- End Architect Section -->
+        <!-- ============================= -->
+
+
+        <!-- ============================= -->
+        <!-- Section 4: The Flow (How It Works) -->
+        <!-- ============================= -->
+        <section class="w-full bg-secondary text-primary py-28 md:py-36" id="process">
+
+            <div class="max-w-5xl mx-auto px-6">
+
+                <!-- Section Header -->
+                <div class="text-center mb-24">
+                    <h2 class="font-display text-4xl md:text-5xl mb-6 leading-tight">
+                        A Seamless Journey <span class="text-accent">From Vision to Reality</span>
+                    </h2>
+
+                    <p class="font-body text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                        Our process is thoughtfully designed to ensure every step feels effortless, transparent, and perfectly aligned with your expectations.
+                    </p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="relative">
+
+                    <!-- Vertical Line -->
+                    <div class="absolute left-5 md:left-1/2 top-0 bottom-0 w-px bg-gray-300 md:-translate-x-1/2"></div>
+
+                    <!-- Step 1 -->
+                    <div class="relative mb-16 flex flex-col md:flex-row items-start md:items-center md:justify-between">
+
+                        <!-- Left (Desktop) -->
+                        <div class="hidden md:block md:w-5/12 text-right pr-10">
+                            <h3 class="font-display text-2xl mb-3">Consultation</h3>
+                            <p class="font-body text-gray-600 leading-relaxed">
+                                We begin by understanding your vision, preferences, and expectations in detail.
+                            </p>
+                        </div>
+
+                        <!-- Icon -->
+                        <div class="relative z-10 flex items-center justify-center w-10 h-10 bg-accent text-primary rounded-full shadow-md">
+                            <span class="material-icons text-lg">chat</span>
+                        </div>
+
+                        <!-- Right (Mobile + Desktop) -->
+                        <div class="mt-6 md:mt-0 md:w-5/12 md:pl-10">
+                            <h3 class="font-display text-2xl mb-3 md:hidden">Consultation</h3>
+                            <p class="font-body text-gray-600 leading-relaxed md:hidden">
+                                We begin by understanding your vision, preferences, and expectations in detail.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="relative mb-16 flex flex-col md:flex-row-reverse items-start md:items-center md:justify-between">
+
+                        <div class="hidden md:block md:w-5/12 text-left pl-10">
+                            <h3 class="font-display text-2xl mb-3">Concept & Design</h3>
+                            <p class="font-body text-gray-600 leading-relaxed">
+                                We craft a unique concept, blending aesthetics with functional planning.
+                            </p>
+                        </div>
+
+                        <div class="relative z-10 flex items-center justify-center w-10 h-10 bg-accent text-primary rounded-full shadow-md">
+                            <span class="material-icons text-lg">palette</span>
+                        </div>
+
+                        <div class="mt-6 md:mt-0 md:w-5/12 md:pr-10">
+                            <h3 class="font-display text-2xl mb-3 md:hidden">Concept & Design</h3>
+                            <p class="font-body text-gray-600 leading-relaxed md:hidden">
+                                We craft a unique concept, blending aesthetics with functional planning.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="relative mb-16 flex flex-col md:flex-row items-start md:items-center md:justify-between">
+
+                        <div class="hidden md:block md:w-5/12 text-right pr-10">
+                            <h3 class="font-display text-2xl mb-3">Planning & Coordination</h3>
+                            <p class="font-body text-gray-600 leading-relaxed">
+                                Every detail is meticulously organized to ensure a flawless execution.
+                            </p>
+                        </div>
+
+                        <div class="relative z-10 flex items-center justify-center w-10 h-10 bg-accent text-primary rounded-full shadow-md">
+                            <span class="material-icons text-lg">event_note</span>
+                        </div>
+
+                        <div class="mt-6 md:mt-0 md:w-5/12 md:pl-10">
+                            <h3 class="font-display text-2xl mb-3 md:hidden">Planning & Coordination</h3>
+                            <p class="font-body text-gray-600 leading-relaxed md:hidden">
+                                Every detail is meticulously organized to ensure a flawless execution.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="relative flex flex-col md:flex-row-reverse items-start md:items-center md:justify-between">
+
+                        <div class="hidden md:block md:w-5/12 text-left pl-10">
+                            <h3 class="font-display text-2xl mb-3">Execution & Experience</h3>
+                            <p class="font-body text-gray-600 leading-relaxed">
+                                We bring everything together seamlessly, delivering an unforgettable experience.
+                            </p>
+                        </div>
+
+                        <div class="relative z-10 flex items-center justify-center w-10 h-10 bg-accent text-primary rounded-full shadow-md">
+                            <span class="material-icons text-lg">auto_awesome_motion</span>
+                        </div>
+
+                        <div class="mt-6 md:mt-0 md:w-5/12 md:pr-10">
+                            <h3 class="font-display text-2xl mb-3 md:hidden">Execution & Experience</h3>
+                            <p class="font-body text-gray-600 leading-relaxed md:hidden">
+                                We bring everything together seamlessly, delivering an unforgettable experience.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ============================= -->
+        <!-- End Flow Section -->
+        <!-- ============================= -->
+
+        <!-- ============================= -->
+        <!-- Section: The Invitation (Enquiry) -->
+        <!-- ============================= -->
+        <section class="w-full bg-secondary text-primary py-28 md:py-36" id="contact">
+
+            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start">
+
+                <!-- ================= LEFT SIDE ================= -->
+                <div>
+
+                    <h2 class="font-display text-4xl md:text-5xl mb-6 leading-tight">
+                        Let’s Craft Your <span class="text-accent">Perfect Event</span>
+                    </h2>
+
+                    <p class="font-body text-lg text-gray-600 mb-10 leading-relaxed">
+                        Share your vision with us. Whether it's an intimate gathering or a grand celebration, we’ll bring your ideas to life with precision and elegance.
+                    </p>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-6 text-gray-700">
+
+                        <div class="flex items-center gap-4">
+                            <span class="material-icons text-accent">email</span>
+                            <span>hello@shubhamevents.com</span>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <span class="material-icons text-accent">call</span>
+                            <span>+91 98765 43210</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- ================= FORM ================= -->
+                <div class="bg-white p-10 border border-gray-200 shadow-sm">
+
+                    <form id="enquiryForm" class="space-y-8" action="https://formspree.io/f/mwvyoqav" method="POST">
+
+                        <!-- Name -->
+                        <div>
+                            <input id="name" type="text" name="name" placeholder="Full Name" class="w-full border-b border-gray-300 py-3 outline-none">
+                        </div>
+
+                        <!-- Email -->
+                        <div>
+                            <input id="email" type="email" name="email" placeholder="Email Address" class="w-full border-b border-gray-300 py-3 outline-none">
+                        </div>
+
+                        <!-- Event Type -->
+                        <div>
+                            <select id="eventType" name="eventType" class="w-full border-b border-gray-300 py-3">
+                                <option value="">Select Event Type</option>
+                                <option>Wedding</option>
+                                <option>Conference</option>
+                                <option>Birthday</option>
+                                <option>Engagement</option>
+                            </select>
+                        </div>
+
+                        <!-- Guests -->
+                        <div>
+                            <input id="guests" type="number" name="guests" placeholder="Estimated Guest Count" class="w-full border-b border-gray-300 py-3">
+                        </div>
+
+                        <!-- Date -->
+                        <div>
+                            <input id="date" type="date" name="date" class="w-full border-b border-gray-300 py-3">
+                        </div>
+
+                        <!-- Message -->
+                        <div>
+                            <textarea id="message" name="message" rows="4" placeholder="Tell Us More" class="w-full border-b border-gray-300 py-3"></textarea>
+                        </div>
+
+                        <!-- Submit -->
+                        <button type="submit" class="w-full py-4 bg-accent text-primary uppercase">Request Consultation</button>
+
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="successMessage" class="hidden text-center py-10 transition duration-500">
+                        <span class="material-icons text-accent text-4xl mb-4">check_circle</span>
+                        <p class="font-display text-2xl mb-2">Thank You!</p>
+                        <p class="text-gray-600">We’ll be in touch shortly.</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ============================= -->
+        <!-- End Invitation Section -->
+        <!-- ============================= -->
+
+        <!-- ============================= -->
+        <!-- Section 5: The Invitation (CTA & Footer) -->
+        <!-- ============================= -->
+        <section class="w-full bg-primary text-secondary pt-28 pb-16">
+
+            <div class="max-w-5xl mx-auto px-6 text-center">
+
+                <!-- CTA Content -->
+                <h2 class="font-display text-4xl md:text-5xl leading-tight mb-6">
+                    Let’s Create Something <span class="text-accent">Unforgettable</span>
+                </h2>
+
+                <p class="font-body text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10">
+                    Whether you're planning an intimate celebration or a grand event, we are here to bring your vision to life with elegance and precision.
+                </p>
+
+                <!-- CTA Button -->
+                <a href="#" class="inline-flex items-center gap-2 px-10 py-4 bg-accent text-primary text-sm tracking-widest uppercase font-medium hover:opacity-90 transition duration-500">
+            Start Your Event
+            <span class="material-icons text-base">arrow_forward</span>
+        </a>
+
+                <!-- Divider -->
+                <div class="w-full h-px bg-white/10 my-16"></div>
+
+                <!-- Footer -->
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-gray-500">
+
+                    <!-- Brand -->
+                    <div class="font-display text-lg text-secondary">
+                        Shubham Events
+                    </div>
+
+                    <!-- Navigation -->
+                    <div class="flex items-center gap-6">
+                        <a href="#vision" class="hover:text-accent transition">Vision</a>
+                        <a href="#canvas" class="hover:text-accent transition">Events</a>
+                        <a href="#process" class="hover:text-accent transition">Process</a>
+                    </div>
+
+                    <!-- Social / Contact Icons -->
+                    <div class="flex items-center gap-4">
+                        <span class="material-icons cursor-pointer hover:text-accent transition">email</span>
+                        <span class="material-icons cursor-pointer hover:text-accent transition">call</span>
+                        <span class="material-icons cursor-pointer hover:text-accent transition">location_on</span>
+                    </div>
+
+                </div>
+
+                <!-- Copyright -->
+                <div class="mt-10 text-xs text-gray-600">
+                    © 2026 Shubham Events. All rights reserved.
+                </div>
+
+            </div>
+
+        </section>
+        <!-- ============================= -->
+        <!-- End CTA & Footer -->
+        <!-- ============================= -->
+    </main>
+    <!-- ============================= -->
+    <!-- Page Wrapper End -->
+    <!-- ============================= -->
+
+    <!-- JavaScript (for micro-interactions later) -->
+    <script>
+        // Placeholder for scroll animations & interactions
+        /////////////////////////////////////////////
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const images = [
+                "https://i.pinimg.com/1200x/35/0c/45/350c45f37dc302e56822cd0e01dcadc0.jpg",
+                "https://i.pinimg.com/736x/ef/a5/8a/efa58a191c4058e0ef93c71490c47b15.jpg",
+                "https://i.pinimg.com/1200x/37/82/5a/37825a6817e40902fb6ea9b0e175880b.jpg",
+                "https://i.pinimg.com/736x/ce/8e/3e/ce8e3eaed936c46981ff33f8f7f2f35a.jpg",
+                "https://i.pinimg.com/1200x/d7/62/c3/d762c31c0cff223ed8093b54e32805ed.jpg",
+            ];
+
+            const img1 = document.getElementById("heroImg1");
+            const img2 = document.getElementById("heroImg2");
+
+            let currentIndex = 0;
+            let isImg1Visible = true;
+
+            function changeImage() {
+
+                currentIndex = (currentIndex + 1) % images.length;
+
+                if (isImg1Visible) {
+                    img2.src = images[currentIndex];
+
+                    img2.classList.remove("opacity-0");
+                    img2.classList.add("opacity-100");
+
+                    img1.classList.remove("opacity-100");
+                    img1.classList.add("opacity-0");
+                } else {
+                    img1.src = images[currentIndex];
+
+                    img1.classList.remove("opacity-0");
+                    img1.classList.add("opacity-100");
+
+                    img2.classList.remove("opacity-100");
+                    img2.classList.add("opacity-0");
+                }
+
+                isImg1Visible = !isImg1Visible;
+            }
+
+            // Change every 6 seconds
+            setInterval(changeImage, 6000);
+
+        });
+
+
+        /////////////////////////////////////////////
+        document.addEventListener("DOMContentLoaded", function() {
+
+            const modal = document.getElementById('galleryModal');
+            const grid = document.getElementById('galleryGrid');
+            const titleEl = document.getElementById('galleryTitle');
+            const descEl = document.getElementById('galleryDescription');
+            const closeBtn = document.getElementById('closeBtn');
+
+            const galleries = {
+                Weddings: [
+                    "https://i.pinimg.com/736x/7c/73/3f/7c733f74bcd1de2b35c04d4245144d22.jpg",
+                    "https://i.pinimg.com/1200x/35/04/b7/3504b70caf178517fdabb9eabfb04bcc.jpg",
+                    "https://i.pinimg.com/736x/3d/b5/f1/3db5f1782104e3c6b57dd28f91fe5120.jpg",
+                    "https://i.pinimg.com/736x/75/cf/41/75cf41e918b5db62157a02b6e9924d15.jpg",
+                    "https://i.pinimg.com/1200x/51/f5/d5/51f5d5e8f0c321579f6e3670cd2ade35.jpg",
+                    "https://i.pinimg.com/736x/32/53/3f/32533fb6aa720b7ac8b8088e3fecf6a1.jpg"
+                ],
+                Birthdays: [
+                    "https://images.pexels.com/photos/14457430/pexels-photo-14457430.jpeg",
+                    "https://i.pinimg.com/736x/f7/a2/59/f7a259d657dfd2596e23c496040e5663.jpg",
+                    "https://i.pinimg.com/736x/b0/2c/41/b02c41a8991af91e952a76d171709eab.jpg",
+                    "https://i.pinimg.com/1200x/35/46/1f/35461fa895d1ddd4e3074a6638e79912.jpg",
+                    "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=800",
+                    "https://www.togetherv.com/blog/wp-content/uploads/2024/07/67196d85-bf1b-4907-b562-5e9426ffc156.webp"
+                ],
+                Engagements: [
+                    "https://i.pinimg.com/1200x/35/8c/5c/358c5c04b143a138101a86aa9dfc3785.jpg",
+                    "https://i.pinimg.com/1200x/bd/e8/7a/bde87a5f66eb9253431cf6c01fa894a1.jpg",
+                    "https://i.pinimg.com/736x/ce/8e/3e/ce8e3eaed936c46981ff33f8f7f2f35a.jpg",
+                    "https://i.pinimg.com/736x/46/a8/6b/46a86bb10846cdbd17d6204b2422c228.jpg",
+                    "https://i.pinimg.com/736x/24/05/5b/24055b9e10f01411c4a1d44f06576022.jpg",
+                    "https://i.pinimg.com/736x/28/e9/4b/28e94b213565f60402ddb32d76adf10c.jpg"
+                ],
+                Conferences: [
+                    "https://i.pinimg.com/1200x/38/f8/40/38f84094cc2ef7e62620e73379dc5cd6.jpg",
+                    "https://i.pinimg.com/1200x/37/82/5a/37825a6817e40902fb6ea9b0e175880b.jpg",
+                    "https://i.pinimg.com/1200x/d7/62/c3/d762c31c0cff223ed8093b54e32805ed.jpg",
+                    "https://i.pinimg.com/1200x/36/b3/84/36b38400f51c50a40441b926f8a11994.jpg",
+                    "https://i.pinimg.com/1200x/8f/28/f0/8f28f0a94ee2b71d985a3a0e1dc2ae02.jpg",
+                    "https://i.pinimg.com/1200x/d1/11/ca/d111ca290722e3f96bef09b90813f95e.jpg"
+                ],
+                Housewarming: [
+                    "https://i.pinimg.com/736x/a3/be/21/a3be21557530d7ba5ffd204c8bc77648.jpg",
+                    "https://i.pinimg.com/736x/01/8d/41/018d413ac6bd5786d63da24cc08396b4.jpg",
+                    "https://i.pinimg.com/1200x/8d/3d/cd/8d3dcdf53c5eb2b957b2b54ddcc3228c.jpg",
+                    "https://i.pinimg.com/1200x/d8/11/95/d8119575def032094507d87ebdd6dd10.jpg",
+                    "https://i.pinimg.com/736x/e6/1c/d0/e61cd0cb689215cbe7ee9ea44923e51c.jpg",
+                    "https://i.pinimg.com/736x/75/af/32/75af32f410b9f2a955aaea3afb3943b9.jpg"
+                ],
+                Custom: [
+                    "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=800",
+                    "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=800",
+                    "https://i.pinimg.com/736x/5b/e7/35/5be735a3514c4e5524debab9dc9da2d9.jpg",
+                    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=800",
+                    "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?q=80&w=800",
+                    "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800"
+                ]
+            };
+
+            const descriptions = {
+
+                Weddings: "A celebration of union, tradition, and grandeur. We craft weddings that blend timeless rituals with refined aesthetics, creating an atmosphere of elegance, emotion, and unforgettable beauty.",
+
+                Birthdays: "From intimate gatherings to lavish celebrations, we design birthday experiences that radiate joy, personality, and vibrant energy, ensuring every moment feels truly special.",
+
+                Engagements: "The beginning of a lifelong journey deserves a setting that reflects love and anticipation. Our engagement events are designed with delicate elegance and thoughtful detail.",
+
+                Conferences: "Professional excellence meets seamless execution. We curate sophisticated environments that foster clarity, engagement, and impactful communication.",
+
+                Housewarming: "A new home marks a new beginning. We create warm, inviting housewarming experiences rooted in tradition, positivity, and graceful celebration.",
+
+                Custom: "Every vision is unique. Whether it's a private celebration or a grand concept, we design bespoke events tailored to your imagination with precision and elegance."
+
+            };
+
+
+
+            // GLOBAL FUNCTION (important)
+            window.openGallery = function(type) {
+                titleEl.textContent = type;
+                descEl.textContent = descriptions[type] || "";
+
+                grid.innerHTML = "";
+
+                galleries[type].forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    // img.className = "w-full h-[300px] object-cover rounded-lg";
+                    img.className = "w-full h-[320px] object-cover rounded-xl transition duration-500 hover:scale-[1.03] hover:shadow-2xl";
+                    grid.appendChild(img);
+                });
+
+                // modal.classList.remove('hidden');
+                modal.classList.remove('hidden');
+                modal.classList.add('opacity-0');
+
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modal.classList.add('transition', 'duration-500', 'opacity-100');
+                }, 10);
+            };
+
+            function closeGallery() {
+                modal.classList.add('hidden');
+                grid.innerHTML = "";
+            }
+
+            closeBtn.addEventListener("click", closeGallery);
+
+            modal.addEventListener("click", (e) => {
+                if (e.target === modal) closeGallery();
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "Escape") closeGallery();
+            });
+
+        });
+
+
+
+
+        /////////////////////////////////////////////////////
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        let isOpen = false;
+
+        menuBtn.addEventListener('click', () => {
+            isOpen = !isOpen;
+
+            if (isOpen) {
+                mobileMenu.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Optional: close menu when clicking a link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                isOpen = false;
+            });
+        });
+
+
+
+        /////////////////////////////////////////////////////
+        document.getElementById('enquiryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = document.getElementById('enquiryForm');
+            const successMessage = document.getElementById('successMessage');
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const eventType = document.getElementById('eventType');
+            const guests = document.getElementById('guests');
+            const date = document.getElementById('date');
+            const message = document.getElementById('message');
+
+            let valid = true;
+
+            [name, email, eventType, guests, date].forEach(field => {
+                field.classList.remove('border-red-500');
+            });
+
+            if (!name.value.trim()) {
+                name.classList.add('border-red-500');
+                valid = false;
+            }
+
+            if (!email.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                email.classList.add('border-red-500');
+                valid = false;
+            }
+
+            if (!eventType.value) {
+                eventType.classList.add('border-red-500');
+                valid = false;
+            }
+
+            if (!guests.value || guests.value <= 0) {
+                guests.classList.add('border-red-500');
+                valid = false;
+            }
+
+            if (!date.value) {
+                date.classList.add('border-red-500');
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            const response = await fetch("https://formspree.io/f/mwvyoqav", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name.value,
+                    email: email.value,
+                    eventType: eventType.value,
+                    guests: guests.value,
+                    date: date.value,
+                    message: message.value
+                })
+            });
+
+            if (response.ok) {
+                form.classList.add('hidden');
+                successMessage.classList.remove('hidden');
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        });
+
+
+        /////////////////////////////////////////////////////
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const baseCards = document.querySelectorAll('.base-card');
+            const addonCards = document.querySelectorAll('.addon-card');
+            const totalEl = document.getElementById('totalPrice');
+
+            let basePrice = 0;
+            let addonsTotal = 0;
+
+            function formatCurrency(num) {
+                return '₹' + num.toLocaleString('en-IN');
+            }
+
+            function updateTotal() {
+                const total = basePrice + addonsTotal;
+                totalEl.textContent = formatCurrency(total);
+            }
+
+            // Base selection
+            baseCards.forEach(card => {
+                card.addEventListener('click', () => {
+
+                    baseCards.forEach(c =>
+                        c.classList.remove('border-accent', 'shadow-md')
+                    );
+
+                    card.classList.add('border-accent', 'shadow-md');
+
+                    basePrice = parseInt(card.dataset.price);
+                    updateTotal();
+                });
+            });
+
+            // Addons
+            addonCards.forEach(card => {
+                card.addEventListener('click', () => {
+
+                    const price = parseInt(card.dataset.price);
+
+                    if (card.classList.contains('active')) {
+
+                        card.classList.remove(
+                            'active',
+                            'border-accent',
+                            'shadow-md'
+                        );
+
+                        addonsTotal -= price;
+
+                    } else {
+
+                        card.classList.add(
+                            'active',
+                            'border-accent',
+                            'shadow-md'
+                        );
+
+                        addonsTotal += price;
+                    }
+
+                    updateTotal();
+                });
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
