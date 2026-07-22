@@ -192,7 +192,7 @@
                      overflow is vertical. Anchoring at 35% (rather than the default 50%)
                      keeps arch crowns and mandap canopies whole and takes the crop off the
                      floor. Full object-top overshoots: slide 1 fills with ceiling. -->
-                <img id="heroImg1" class="absolute inset-0 w-full h-full object-cover object-[50%_35%] opacity-100 transition-opacity duration-[2000ms]" src="images/hero/hero-1.jpg?v=33" alt="Indian Wedding">
+                <img id="heroImg1" class="absolute inset-0 w-full h-full object-cover object-[50%_35%] opacity-100 transition-opacity duration-[2000ms]" src="images/hero/hero-1.jpg?v=34" alt="Indian Wedding">
 
                 <!-- Image Layer 2 -->
                 <img id="heroImg2" class="absolute inset-0 w-full h-full object-cover object-[50%_35%] opacity-0 transition-opacity duration-[2000ms]" src="" alt="Hero Background">
@@ -935,7 +935,7 @@
         // ASSET_VERSION busts the browser cache: reordering a gallery or swapping a photo
         // reuses the same filenames with different pictures, so bump this whenever the
         // image files on disk change. Shared by the hero slideshow and every gallery.
-        const ASSET_VERSION = 33;
+        const ASSET_VERSION = 34;
 
         // Placeholder for scroll animations & interactions
         /////////////////////////////////////////////
@@ -1095,16 +1095,12 @@
                 Weddings: {
                     stages: {
                         "Haldi": {
-                            caption: "Turmeric, marigold and sunlight — the ritual that opens the celebration.",
-                            images: anchor(localGallery("weddings/haldi", "haldi", 8), { 1: "top", 2: "bottom" })
+                            caption: "Turmeric, marigold and sunlight — the haldi, known here as pellikuthuru and pellikoduku, that opens the celebration.",
+                            images: anchor(localGallery("weddings/haldi", "haldi", 15), { 1: "top", 2: "bottom" })
                         },
                         "Sangeet": {
                             caption: "An evening of music and colour, staged for dancing until the early hours.",
                             images: localGallery("weddings/sangeet", "sangeet", 15)
-                        },
-                        "Pellikuthuru / Pellikoduku": {
-                            caption: "The bride and groom blessed in their own homes on the eve of the wedding.",
-                            images: localGallery("weddings/pellikuthuru", "pellikuthuru", 7)
                         },
                         "Wedding Ceremony": {
                             caption: "The mandap itself — carved, gilded and dressed for the vows.",
