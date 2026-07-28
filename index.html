@@ -39,6 +39,11 @@
     <!-- Material Design Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <!-- flatpickr: gives the date field a calendar that always displays DD/MM/YYYY,
+         regardless of the visitor's browser locale (a native <input type=date> can't be
+         format-forced). -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -695,7 +700,7 @@
 
                         <!-- Date -->
                         <div>
-                            <input id="date" type="date" name="date" class="w-full border-b border-gray-300 py-3">
+                            <input id="date" type="text" name="date" placeholder="Event Date (DD/MM/YYYY)" class="w-full border-b border-gray-300 py-3 outline-none bg-transparent">
                         </div>
 
                         <!-- Message -->
@@ -1214,6 +1219,19 @@
         });
 
 
+    </script>
+
+    <!-- Date picker: always DD/MM/YYYY, calendar on desktop and mobile alike -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        if (window.flatpickr) {
+            flatpickr("#date", {
+                dateFormat: "d/m/Y",   // both what the visitor sees and what is submitted
+                allowInput: true,      // they can also type the date
+                disableMobile: true,   // use flatpickr's own calendar on mobile, not the OS one
+                minDate: "today"       // an event date in the past makes no sense
+            });
+        }
     </script>
 
 </body>
