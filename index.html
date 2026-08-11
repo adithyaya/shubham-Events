@@ -33,6 +33,10 @@
 
     <meta name="theme-color" content="#0B0805" />
 
+    <!-- Favicon: the Ganesha crown from the brand mark, legible at tab size -->
+    <link rel="icon" type="image/png" href="images/logo/favicon.png" />
+    <link rel="apple-touch-icon" href="images/logo/favicon.png" />
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -120,11 +124,12 @@
 
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-            <!-- Brand: starts hidden and fades in once the hero (which already shows the name
-                 large) scrolls away, so the name never appears twice on screen at once. -->
-            <div id="navBrand" class="font-display text-2xl text-secondary tracking-wide opacity-0 transition-opacity duration-500">
-                Shubham Events
-            </div>
+            <!-- Brand logo: starts hidden and fades in once the hero (which already shows the
+                 name large) scrolls away, so the name never appears twice on screen at once.
+                 Transparent PNG with a white glow, so it reads on the dark nav bar. -->
+            <a href="#" id="navBrand" aria-label="Shubham Events — home" class="opacity-0 transition-opacity duration-500">
+                <img src="images/logo/logo.png" alt="Shubham Events" width="516" height="520" class="h-14 md:h-16 w-auto">
+            </a>
 
             <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-10 font-body text-sm text-gray-300">
@@ -753,10 +758,9 @@
                 <!-- Footer -->
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-gray-500">
 
-                    <!-- Brand -->
-                    <div class="font-display text-lg text-secondary">
-                        Shubham Events
-                    </div>
+                    <!-- Brand logo -->
+                    <img src="images/logo/logo.png" alt="Shubham Events" width="516" height="520" class="h-20 w-auto">
+
 
                     <!-- Navigation -->
                     <div class="flex items-center gap-6">
