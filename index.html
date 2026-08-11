@@ -34,8 +34,8 @@
     <meta name="theme-color" content="#0B0805" />
 
     <!-- Favicon: the Ganesha crown from the brand mark, legible at tab size -->
-    <link rel="icon" type="image/png" href="images/logo/favicon.png" />
-    <link rel="apple-touch-icon" href="images/logo/favicon.png" />
+    <link rel="icon" type="image/png" href="images/logo/favicon.png?v=2" />
+    <link rel="apple-touch-icon" href="images/logo/favicon.png?v=2" />
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -111,6 +111,14 @@
         @media (prefers-reduced-motion: reduce) {
             .caret { display: none; }
         }
+
+        /* Soft black glow behind the nav logo — a dark halo (no solid card) that keeps the
+           transparent red/blue mark legible when the translucent nav bar sits over light
+           sections. Two stacked drop-shadows: a tight core plus a wider falloff. */
+        .logo-glow {
+            filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.85))
+                    drop-shadow(0 0 9px rgba(0, 0, 0, 0.5));
+        }
     </style>
 </head>
 
@@ -122,13 +130,12 @@
 
     <nav class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-black/40 border-b border-white/10">
 
-        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
 
-            <!-- Brand logo: starts hidden and fades in once the hero (which already shows the
-                 name large) scrolls away, so the name never appears twice on screen at once.
-                 Transparent PNG with a white glow, so it reads on the dark nav bar. -->
-            <a href="#" id="navBrand" aria-label="Shubham Events — home" class="opacity-0 transition-opacity duration-500">
-                <img src="images/logo/logo.png" alt="Shubham Events" width="516" height="520" class="h-14 md:h-16 w-auto">
+            <!-- Brand logo with a soft black glow (no card) so the transparent red/blue mark
+                 stays legible whether the translucent nav bar is over dark or light sections. -->
+            <a href="#" aria-label="Shubham Events — home">
+                <img src="images/logo/logo.png?v=2" alt="Shubham Events" width="520" height="520" class="h-[68px] md:h-[88px] w-auto logo-glow">
             </a>
 
             <!-- Desktop Navigation -->
@@ -759,7 +766,7 @@
                 <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-gray-500">
 
                     <!-- Brand logo -->
-                    <img src="images/logo/logo.png" alt="Shubham Events" width="516" height="520" class="h-20 w-auto">
+                    <img src="images/logo/logo.png?v=2" alt="Shubham Events" width="520" height="520" class="h-28 w-auto">
 
 
                     <!-- Navigation -->
@@ -852,20 +859,6 @@
 
             // Change every 6 seconds
             setInterval(changeImage, 6000);
-
-            /////////////////////////////////////////////
-            // Nav logo fades in only once the hero has scrolled away, so the logo and the
-            // large hero title are never on screen at the same time.
-            const navBrand = document.getElementById("navBrand");
-            if (navBrand) {
-                const revealNav = () => {
-                    const past = window.scrollY > window.innerHeight * 0.6;
-                    navBrand.classList.toggle("opacity-0", !past);
-                    navBrand.classList.toggle("opacity-100", past);
-                };
-                window.addEventListener("scroll", revealNav, { passive: true });
-                revealNav();
-            }
 
             /////////////////////////////////////////////
             // Hero subtitle: type through the occasions we build for.
