@@ -401,6 +401,7 @@
         }
 
         .nav-link {
+            position: relative;
             display: inline-flex;
             align-items: center;
             min-height: 42px;
@@ -411,8 +412,28 @@
             transition: color 180ms ease;
         }
 
-        .nav-link:hover {
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.3rem;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--brand-accent);
+            opacity: 0;
+            transform: scaleX(0.45);
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+
+        .nav-link:hover,
+        .nav-link[aria-current="page"] {
             color: var(--brand-accent);
+        }
+
+        .nav-link[aria-current="page"]::after {
+            opacity: 1;
+            transform: scaleX(1);
         }
 
         .hero {
@@ -2226,7 +2247,55 @@
                 });
 
                 history.pushState(null, '', hash);
+                setActiveNavLink(hash);
                 return true;
+            }
+
+            const sectionNavLinks = Array.from(document.querySelectorAll('.site-nav .nav-link[href^="#"]'));
+            const trackedSectionIds = sectionNavLinks
+                .map((link) => link.getAttribute('href')?.slice(1))
+                .filter(Boolean);
+            const trackedSections = trackedSectionIds
+                .map((id) => document.getElementById(id))
+                .filter(Boolean);
+
+            function setActiveNavLink(hash) {
+                sectionNavLinks.forEach((link) => {
+                    const isActive = link.getAttribute('href') === hash;
+                    if (isActive) {
+                        link.setAttribute('aria-current', 'page');
+                    } else {
+                        link.removeAttribute('aria-current');
+                    }
+                });
+            }
+
+            let navSpyFrame = 0;
+            function updateActiveNavFromScroll() {
+                navSpyFrame = 0;
+                if (!trackedSections.length) return;
+
+                const probeY = navOffset() + Math.min(window.innerHeight * 0.28, 240);
+                let activeSection = null;
+
+                trackedSections.forEach((section) => {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= probeY && rect.bottom > probeY) {
+                        activeSection = section;
+                    }
+                });
+
+                const nearPageEnd = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 8;
+                if (nearPageEnd) {
+                    activeSection = trackedSections[trackedSections.length - 1];
+                }
+
+                setActiveNavLink(activeSection ? `#${activeSection.id}` : '');
+            }
+
+            function requestActiveNavUpdate() {
+                if (navSpyFrame) return;
+                navSpyFrame = window.requestAnimationFrame(updateActiveNavFromScroll);
             }
 
             document.querySelectorAll('a[href^="#"]').forEach((link) => {
@@ -2239,6 +2308,10 @@
                     scrollToHash(hash);
                 });
             });
+
+            updateActiveNavFromScroll();
+            window.addEventListener('scroll', requestActiveNavUpdate, { passive: true });
+            window.addEventListener('resize', requestActiveNavUpdate);
 
             if (window.location.hash) {
                 window.setTimeout(() => scrollToHash(window.location.hash, 'auto'), 60);
