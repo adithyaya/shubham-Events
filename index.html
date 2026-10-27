@@ -104,6 +104,8 @@
             --shadow-regal: 0 28px 90px rgba(16, 8, 6, 0.32);
             --section-pad: clamp(5.25rem, 7.5vw, 8rem);
             --anchor-offset: 116px;
+            /* Deeper than WhatsApp's own green so white text and icons stay readable. */
+            --whatsapp: #0e8043;
         }
 
         * {
@@ -423,6 +425,250 @@
             height: 54px;
             border-color: rgba(7, 150, 207, 0.8);
             background: rgba(7, 150, 207, 0.08);
+        }
+
+        .icon-sprite {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+
+        .wa-icon {
+            width: 1.2em;
+            height: 1.2em;
+            flex-shrink: 0;
+        }
+
+        .btn-whatsapp {
+            background: var(--whatsapp);
+            color: white;
+        }
+
+        .btn-whatsapp:hover,
+        .btn-whatsapp:focus-visible {
+            box-shadow: 0 18px 48px rgba(14, 128, 67, 0.32);
+        }
+
+        .whatsapp-fab {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 70;
+            display: grid;
+            width: 58px;
+            height: 58px;
+            place-items: center;
+            border-radius: 999px;
+            background: var(--whatsapp);
+            color: white;
+            font-size: 1.7rem;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+            opacity: 0;
+            transform: translateY(16px) scale(0.92);
+            pointer-events: none;
+            transition: opacity 260ms ease, transform 260ms ease;
+        }
+
+        .show-quick-actions .whatsapp-fab {
+            opacity: 1;
+            transform: none;
+            pointer-events: auto;
+        }
+
+        .show-quick-actions .whatsapp-fab:hover,
+        .show-quick-actions .whatsapp-fab:focus-visible {
+            transform: translateY(-3px);
+        }
+
+        .mobile-action-bar {
+            display: none;
+        }
+
+        .quote-prompt {
+            position: fixed;
+            left: 24px;
+            bottom: 24px;
+            z-index: 80;
+            width: min(370px, calc(100vw - 32px));
+            padding: 1.35rem 1.35rem 1.25rem;
+            border: 1px solid rgba(214, 168, 75, 0.4);
+            border-radius: 20px;
+            background: linear-gradient(160deg, rgba(34, 17, 13, 0.97), rgba(16, 8, 6, 0.97));
+            box-shadow: var(--shadow-regal);
+            color: var(--surface-warm);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(18px);
+            transition: opacity 320ms ease, transform 320ms ease, visibility 320ms;
+        }
+
+        .quote-prompt.is-visible {
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+        }
+
+        .quote-prompt-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border-radius: 999px;
+            color: rgba(255, 244, 229, 0.7);
+        }
+
+        .quote-prompt-close:hover,
+        .quote-prompt-close:focus-visible {
+            background: rgba(255, 244, 229, 0.08);
+            color: white;
+        }
+
+        .quote-prompt-title {
+            margin-top: 0.5rem;
+            padding-right: 2rem;
+            color: white;
+            font-family: Cinzel, Playfair Display, serif;
+            font-size: 1.35rem;
+            line-height: 1.2;
+        }
+
+        .quote-prompt-text {
+            margin-top: 0.5rem;
+            color: rgba(255, 244, 229, 0.78);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .quote-prompt-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.1rem;
+        }
+
+        .quote-prompt-actions .btn {
+            min-height: 44px;
+            padding: 0.7rem 0.9rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+        }
+
+        .service-quote {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            min-height: 44px;
+            margin-top: 0.75rem;
+            color: var(--brand-accent-deep);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .service-quote .material-icons {
+            font-size: 1.05rem;
+            transition: transform 200ms ease;
+        }
+
+        .service-quote:hover,
+        .service-quote:focus-visible {
+            color: var(--brand-red);
+        }
+
+        .service-quote:hover .material-icons {
+            transform: translateX(3px);
+        }
+
+        .form-assurance {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.1rem;
+            color: rgba(34, 17, 13, 0.62);
+            font-size: 0.8rem;
+        }
+
+        .form-assurance > span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .form-assurance .material-icons {
+            color: var(--brand-accent-deep);
+            font-size: 1rem;
+        }
+
+        @media (max-width: 1080px) {
+            .whatsapp-fab {
+                display: none;
+            }
+
+            .mobile-action-bar {
+                position: fixed;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: 70;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1.35fr;
+                gap: 0.5rem;
+                padding: 0.6rem 0.75rem calc(0.6rem + env(safe-area-inset-bottom));
+                border-top: 1px solid rgba(214, 168, 75, 0.28);
+                background: rgba(16, 8, 6, 0.9);
+                backdrop-filter: blur(16px);
+                transform: translateY(110%);
+                transition: transform 280ms ease;
+            }
+
+            .show-quick-actions .mobile-action-bar {
+                transform: none;
+            }
+
+            .mobile-action-bar > * {
+                display: inline-flex;
+                min-height: 46px;
+                align-items: center;
+                justify-content: center;
+                gap: 0.4rem;
+                border: 1px solid rgba(255, 244, 229, 0.22);
+                border-radius: 999px;
+                color: white;
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+            }
+
+            .mobile-action-bar .material-icons {
+                font-size: 1.1rem;
+            }
+
+            .mobile-action-bar .action-whatsapp {
+                border-color: transparent;
+                background: var(--whatsapp);
+            }
+
+            .mobile-action-bar .action-quote {
+                border-color: transparent;
+                background: linear-gradient(135deg, var(--brand-accent), #f0cf79);
+                color: var(--brand-primary);
+            }
+
+            .quote-prompt {
+                right: 12px;
+                bottom: calc(76px + env(safe-area-inset-bottom));
+                left: 12px;
+                width: auto;
+            }
+
+            .site-footer {
+                padding-bottom: calc(clamp(2.25rem, 4vw, 3.5rem) + 72px + env(safe-area-inset-bottom));
+            }
         }
 
         .logo-glow {
@@ -1039,6 +1285,34 @@
             gap: 1rem;
         }
 
+        .gallery-heading {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .gallery-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .gallery-whatsapp {
+            display: grid;
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 999px;
+            background: var(--whatsapp);
+            color: white;
+            font-size: 1.35rem;
+        }
+
+        .gallery-actions .gallery-quote {
+            min-height: 44px;
+            padding: 0.7rem 1.1rem;
+        }
+
         .gallery-stage {
             position: relative;
             min-height: 0;
@@ -1501,6 +1775,7 @@
 
             .site-footer {
                 padding-block: 1.65rem;
+                padding-bottom: calc(1.65rem + 72px + env(safe-area-inset-bottom));
             }
 
             .footer-grid {
@@ -1542,6 +1817,20 @@
                 max-height: calc(100svh - 18px);
                 padding: 0.8rem;
                 border-radius: 16px;
+            }
+
+            .gallery-header {
+                flex-wrap: wrap;
+                row-gap: 0.75rem;
+            }
+
+            .gallery-actions {
+                order: 3;
+                flex: 1 1 100%;
+            }
+
+            .gallery-actions .gallery-quote {
+                flex: 1;
             }
 
             .gallery-stage img {
@@ -1734,6 +2023,12 @@
         </div>
     </div>
 
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+        </symbol>
+    </svg>
+
     <div class="cursor-dot" aria-hidden="true"></div>
     <div class="cursor-ring" aria-hidden="true"></div>
 
@@ -1757,8 +2052,8 @@
                     +91 91779 00385
                 </a>
                 <button class="btn btn-primary !min-h-11 !px-4" data-open-drawer>
-                    <span class="material-icons text-base" aria-hidden="true">event_available</span>
-                    Plan
+                    <span class="material-icons text-base" aria-hidden="true">request_quote</span>
+                    Get Quote
                 </button>
             </div>
 
@@ -1775,8 +2070,8 @@
                 <a href="#consultation" class="nav-link">Consultation</a>
                 <a href="#contact" class="nav-link">Contact</a>
                 <button class="btn btn-primary mt-2 w-full" data-open-drawer>
-                    <span class="material-icons text-base" aria-hidden="true">event_available</span>
-                    Plan Your Event
+                    <span class="material-icons text-base" aria-hidden="true">request_quote</span>
+                    Get a Free Quote
                 </button>
             </div>
         </div>
@@ -1802,15 +2097,15 @@
                     <p class="mt-6 max-w-2xl text-lg leading-8 text-white/82 reveal md:text-xl" style="transition-delay: 180ms;">
                         From the first garland at the entrance to the final lamp on stage, we dress your celebration so every guest feels the occasion before they even sit down.
                     </p>
-                    <div class="mt-9 flex flex-col gap-3 reveal sm:flex-row" style="transition-delay: 270ms;">
-                        <a href="#showcase" class="btn btn-primary">
-                            <span class="material-icons text-base" aria-hidden="true">auto_awesome</span>
-                            Explore Celebrations
-                        </a>
-                        <button class="btn btn-secondary" data-open-drawer>
-                            <span class="material-icons text-base" aria-hidden="true">edit_calendar</span>
-                            Plan Your Event
+                    <div id="heroActions" class="mt-9 flex flex-col gap-3 reveal sm:flex-row" style="transition-delay: 270ms;">
+                        <button class="btn btn-primary" data-open-drawer>
+                            <span class="material-icons text-base" aria-hidden="true">request_quote</span>
+                            Get a Free Quote
                         </button>
+                        <a href="#showcase" class="btn btn-secondary">
+                            <span class="material-icons text-base" aria-hidden="true">photo_library</span>
+                            See Our Work
+                        </a>
                     </div>
                 </div>
 
@@ -1840,31 +2135,37 @@
                         <span class="material-icons text-4xl text-brand-red" aria-hidden="true">temple_hindu</span>
                         <h3 class="mt-5 font-display text-2xl text-brand-ink">Wedding Rituals</h3>
                         <p class="mt-3 leading-7 text-brand-ink/70">Haldi yellows, sangeet sparkle, mandap florals and reception grandeur, all planned as one beautiful story.</p>
+                        <button type="button" class="service-quote" data-open-drawer data-event-type="Wedding" aria-label="Get a quote for wedding decor">Get a quote <span class="material-icons" aria-hidden="true">arrow_forward</span></button>
                     </article>
                     <article class="service-card p-7 pt-12">
                         <span class="material-icons text-4xl text-brand-blue" aria-hidden="true">villa</span>
                         <h3 class="mt-5 font-display text-2xl text-brand-ink">Birthdays</h3>
                         <p class="mt-3 leading-7 text-brand-ink/70">Colourful stages, cheerful backdrops and decor made for cake-cutting moments.</p>
+                        <button type="button" class="service-quote" data-open-drawer data-event-type="Birthday" aria-label="Get a quote for birthday decor">Get a quote <span class="material-icons" aria-hidden="true">arrow_forward</span></button>
                     </article>
                     <article class="service-card p-7 pt-12">
                         <span class="material-icons text-4xl text-brand-deepGold" aria-hidden="true">local_florist</span>
                         <h3 class="mt-5 font-display text-2xl text-brand-ink">Housewarming</h3>
                         <p class="mt-3 leading-7 text-brand-ink/70">Auspicious entrances, marigold paths and welcoming details for a new home.</p>
+                        <button type="button" class="service-quote" data-open-drawer data-event-type="Housewarming" aria-label="Get a quote for housewarming decor">Get a quote <span class="material-icons" aria-hidden="true">arrow_forward</span></button>
                     </article>
                     <article class="service-card p-7 pt-12">
                         <span class="material-icons text-4xl text-brand-red" aria-hidden="true">corporate_fare</span>
                         <h3 class="mt-5 font-display text-2xl text-brand-ink">Conferences</h3>
                         <p class="mt-3 leading-7 text-brand-ink/70">Professional gatherings with a polished stage, welcoming decor and a setting guests can settle into.</p>
+                        <button type="button" class="service-quote" data-open-drawer data-event-type="Conference" aria-label="Get a quote for conference decor">Get a quote <span class="material-icons" aria-hidden="true">arrow_forward</span></button>
                     </article>
                     <article class="service-card p-7 pt-12">
                         <span class="material-icons text-4xl text-brand-deepGold" aria-hidden="true">local_florist</span>
                         <h3 class="mt-5 font-display text-2xl text-brand-ink">Puja Ceremonies</h3>
                         <p class="mt-3 leading-7 text-brand-ink/70">Brass lamps, jasmine, rangoli and marigolds arranged with devotion.</p>
+                        <button type="button" class="service-quote" data-open-drawer data-event-type="Puja" aria-label="Get a quote for puja decor">Get a quote <span class="material-icons" aria-hidden="true">arrow_forward</span></button>
                     </article>
                     <article class="service-card p-7 pt-12">
                         <span class="material-icons text-4xl text-brand-blue" aria-hidden="true">auto_awesome</span>
                         <h3 class="mt-5 font-display text-2xl text-brand-ink">Custom Events</h3>
                         <p class="mt-3 leading-7 text-brand-ink/70">Private celebrations and unique ideas shaped around your venue and family.</p>
+                        <button type="button" class="service-quote" data-open-drawer data-event-type="Custom Event" aria-label="Get a quote for a custom event">Get a quote <span class="material-icons" aria-hidden="true">arrow_forward</span></button>
                     </article>
                 </div>
             </div>
@@ -2131,10 +2432,10 @@
         <section id="consultation" class="bg-brand-cream py-[var(--section-pad)] text-brand-ink">
             <div class="container grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
                 <div>
-                    <p class="section-kicker">Plan a celebration</p>
-                    <h2 class="section-title mt-4">Let us understand the occasion before the first call.</h2>
+                    <p class="section-kicker">Free quote</p>
+                    <h2 class="section-title mt-4">Tell us about your celebration. We'll send a free quote.</h2>
                     <p class="section-copy mt-6">
-                        Share a few details about the event, guest count and venue. We will call back with practical ideas, decor options and the next steps for your date.
+                        Share your event and date. We'll get back to you with decor ideas, options for your budget and a quote, with no obligation to book.
                     </p>
                     <div class="mt-8 grid gap-4 sm:grid-cols-2">
                         <div class="quote-card rounded-xl p-5">
@@ -2154,11 +2455,11 @@
                     <div class="grid gap-4 md:grid-cols-2">
                         <label class="grid gap-2">
                             <span class="text-sm font-bold text-brand-ink">Full name</span>
-                            <input id="consultationName" name="name" type="text" required class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
+                            <input id="consultationName" name="name" type="text" required autocomplete="name" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
                         </label>
                         <label class="grid gap-2">
-                            <span class="text-sm font-bold text-brand-ink">Phone or email</span>
-                            <input id="consultationContact" name="contact" type="text" required class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
+                            <span class="text-sm font-bold text-brand-ink">Phone / WhatsApp</span>
+                            <input id="consultationContact" name="contact" type="tel" inputmode="tel" autocomplete="tel" required pattern="\+?[0-9 \(\)\-]{10,20}" title="Enter a 10-digit mobile number" placeholder="10-digit mobile number" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
                         </label>
                     </div>
                     <div class="grid gap-4 md:grid-cols-3">
@@ -2177,27 +2478,55 @@
                             </select>
                         </label>
                         <label class="grid gap-2">
-                            <span class="text-sm font-bold text-brand-ink">Guests</span>
-                            <input id="consultationGuests" name="guests" type="number" min="1" required class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
+                            <span class="text-sm font-bold text-brand-ink">Guests <span class="font-normal text-brand-ink/55">(optional)</span></span>
+                            <select id="consultationGuests" name="guests" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none">
+                                <option value="">Not sure yet</option>
+                                <option>Under 100</option>
+                                <option>100 - 300</option>
+                                <option>300 - 500</option>
+                                <option>500+</option>
+                            </select>
                         </label>
                         <label class="grid gap-2">
-                            <span class="text-sm font-bold text-brand-ink">Event date</span>
+                            <span class="text-sm font-bold text-brand-ink">Event date <span class="font-normal text-brand-ink/55">(optional)</span></span>
                             <input id="consultationDate" name="date" type="text" placeholder="DD/MM/YYYY" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
                         </label>
                     </div>
                     <label class="grid gap-2">
-                        <span class="text-sm font-bold text-brand-ink">What should the space feel like?</span>
-                        <textarea id="consultationMessage" name="message" rows="5" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" placeholder="Mention venue, rituals, colours, entrance, stage, mandap or anything you already have in mind."></textarea>
+                        <span class="text-sm font-bold text-brand-ink">Anything we should know? <span class="font-normal text-brand-ink/55">(optional)</span></span>
+                        <textarea id="consultationMessage" name="message" rows="4" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" placeholder="Venue, theme, colours, entrance, stage, mandap or anything you already have in mind."></textarea>
                     </label>
                     <input type="hidden" name="estimate" />
                     <button type="submit" class="btn btn-primary w-full md:w-auto md:justify-self-start">
                         <span class="material-icons text-base" aria-hidden="true">send</span>
-                        Request Consultation
+                        Get My Free Quote
                     </button>
-                    <div data-success-message class="hidden rounded-2xl border border-brand-gold/40 bg-white p-6 text-center">
+                    <p class="form-assurance">
+                        <span><span class="material-icons" aria-hidden="true">verified</span>Free, no-obligation quote</span>
+                        <span><span class="material-icons" aria-hidden="true">lock</span>Your number stays private</span>
+                    </p>
+                    <div data-success-message class="hidden rounded-2xl border border-brand-gold/40 bg-white p-6 text-center" role="status">
                         <span class="material-icons text-4xl text-brand-deepGold" aria-hidden="true">check_circle</span>
-                        <p class="mt-2 font-display text-2xl">Thank you</p>
-                        <p class="mt-1 text-sm text-brand-ink/65">We will be in touch shortly.</p>
+                        <p class="mt-2 font-display text-2xl" data-success-title>Thank you!</p>
+                        <p class="mt-1 text-sm text-brand-ink/65">Your request is with us. We'll reach out soon with ideas and your free quote.</p>
+                        <a class="btn btn-whatsapp mt-4" data-success-whatsapp href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I%20just%20requested%20a%20free%20quote%20on%20your%20website." target="_blank" rel="noopener">
+                            <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                            Chat now on WhatsApp
+                        </a>
+                    </div>
+                    <div data-error-message class="hidden rounded-2xl border border-brand-red/30 bg-white p-5 text-center" role="alert">
+                        <p class="font-bold text-brand-red">We couldn't send your request just now.</p>
+                        <p class="mt-1 text-sm text-brand-ink/70">Please try again, or reach us directly:</p>
+                        <div class="mt-3 flex flex-wrap justify-center gap-2">
+                            <a class="btn btn-whatsapp" href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I'd%20like%20a%20free%20quote%20for%20my%20event." target="_blank" rel="noopener">
+                                <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                                WhatsApp
+                            </a>
+                            <a class="btn border border-brand-deepGold/30 text-brand-ink" href="tel:+919177900385">
+                                <span class="material-icons text-base" aria-hidden="true">call</span>
+                                Call us
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -2216,6 +2545,10 @@
                         <a href="tel:+919177900385" class="flex items-center gap-3">
                             <span class="material-icons text-brand-gold" aria-hidden="true">call</span>
                             +91 91779 00385
+                        </a>
+                        <a href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I'd%20like%20a%20free%20quote%20for%20my%20event." target="_blank" rel="noopener" class="flex items-center gap-3">
+                            <svg class="wa-icon text-2xl text-brand-gold" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                            Chat with us on WhatsApp
                         </a>
                         <a href="#showcase" class="flex items-center gap-3">
                             <span class="material-icons text-brand-gold" aria-hidden="true">photo_library</span>
@@ -2252,6 +2585,15 @@
                             <div><p class="px-5 pb-5 leading-7 text-white/70">Yes. We check measurements, entry paths, power points, ceiling height and guest movement before finalizing the setup.</p></div>
                         </div>
                     </article>
+                    <article class="faq-item rounded-2xl border border-white/12 bg-white/[0.06]">
+                        <button class="faq-toggle flex w-full items-center justify-between gap-4 p-5 text-left text-white">
+                            <span class="font-display text-xl">Is the quote really free?</span>
+                            <span class="material-icons text-brand-gold" aria-hidden="true">expand_more</span>
+                        </button>
+                        <div class="faq-answer">
+                            <div><p class="px-5 pb-5 leading-7 text-white/70">Yes. Tell us your event, date and venue, and we'll share decor ideas with a quote at no cost and no obligation to book. You can also message us on WhatsApp.</p></div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -2276,8 +2618,11 @@
                     <a href="tel:+919177900385" class="footer-icon" aria-label="Call Shubham Events">
                         <span class="material-icons" aria-hidden="true">call</span>
                     </a>
-                    <button class="footer-icon" data-open-drawer aria-label="Open booking planner">
-                        <span class="material-icons" aria-hidden="true">event</span>
+                    <a href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I'd%20like%20a%20free%20quote%20for%20my%20event." target="_blank" rel="noopener" class="footer-icon" aria-label="Chat with Shubham Events on WhatsApp">
+                        <svg class="wa-icon text-xl" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                    </a>
+                    <button class="footer-icon" data-open-drawer aria-label="Get a free quote">
+                        <span class="material-icons" aria-hidden="true">request_quote</span>
                     </button>
                 </div>
             </div>
@@ -2288,9 +2633,18 @@
     <div id="lightbox" class="modal" role="dialog" aria-modal="true" aria-label="Portfolio gallery">
         <div class="gallery-viewer">
             <div class="gallery-header">
-                <div>
+                <div class="gallery-heading">
                     <p id="lightboxCount" class="text-xs font-bold uppercase tracking-[0.18em] text-brand-gold"></p>
                     <h2 id="lightboxCaption" class="mt-1 font-display text-2xl text-white md:text-3xl"></h2>
+                </div>
+                <div class="gallery-actions">
+                    <a id="galleryWhatsApp" class="gallery-whatsapp" href="https://wa.me/919177900385" target="_blank" rel="noopener" aria-label="Ask about this style on WhatsApp">
+                        <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                    </a>
+                    <button id="galleryQuote" type="button" class="btn btn-primary gallery-quote">
+                        <span class="material-icons text-base" aria-hidden="true">request_quote</span>
+                        Get a quote for this style
+                    </button>
                 </div>
                 <button id="closeLightbox" class="gallery-close" aria-label="Close gallery">
                     <span class="material-icons" aria-hidden="true">close</span>
@@ -2323,8 +2677,8 @@
         <div class="drawer-panel">
             <div class="sticky top-0 z-10 flex items-center justify-between border-b border-brand-deepGold/20 bg-brand-cream/95 p-5 backdrop-blur">
                 <div>
-                    <p class="section-kicker">Consultation</p>
-                    <h2 class="font-display text-2xl">Plan Your Event</h2>
+                    <p class="section-kicker">Free quote</p>
+                    <h2 class="font-display text-2xl">Get your free quote</h2>
                 </div>
                 <button class="grid h-11 w-11 place-items-center rounded-full border border-brand-deepGold/25" data-close-drawer aria-label="Close booking drawer">
                     <span class="material-icons" aria-hidden="true">close</span>
@@ -2332,13 +2686,14 @@
             </div>
 
             <form id="enquiryForm" data-consultation-form class="grid gap-5 p-5" action="https://formspree.io/f/mwvyoqav" method="POST">
+                <p class="text-sm leading-6 text-brand-ink/70">Tell us a little about your event. It takes under a minute, and there's no obligation to book.</p>
                 <label class="grid gap-2">
                     <span class="text-sm font-bold text-brand-ink">Full name</span>
-                    <input id="name" name="name" type="text" required class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
+                    <input id="name" name="name" type="text" required autocomplete="name" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
                 </label>
                 <label class="grid gap-2">
-                    <span class="text-sm font-bold text-brand-ink">Phone or email</span>
-                    <input id="email" name="contact" type="text" required class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
+                    <span class="text-sm font-bold text-brand-ink">Phone / WhatsApp</span>
+                    <input id="email" name="contact" type="tel" inputmode="tel" autocomplete="tel" required pattern="\+?[0-9 \(\)\-]{10,20}" title="Enter a 10-digit mobile number" placeholder="10-digit mobile number" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
                 </label>
                 <label class="grid gap-2">
                     <span class="text-sm font-bold text-brand-ink">Event type</span>
@@ -2356,29 +2711,92 @@
                 </label>
                 <div class="grid grid-cols-2 gap-4">
                     <label class="grid gap-2">
-                        <span class="text-sm font-bold text-brand-ink">Guests</span>
-                        <input id="guests" name="guests" type="number" min="1" required class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
+                        <span class="text-sm font-bold text-brand-ink">Guests <span class="font-normal text-brand-ink/55">(optional)</span></span>
+                        <select id="guests" name="guests" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none">
+                            <option value="">Not sure yet</option>
+                            <option>Under 100</option>
+                            <option>100 - 300</option>
+                            <option>300 - 500</option>
+                            <option>500+</option>
+                        </select>
                     </label>
                     <label class="grid gap-2">
-                        <span class="text-sm font-bold text-brand-ink">Event date</span>
+                        <span class="text-sm font-bold text-brand-ink">Event date <span class="font-normal text-brand-ink/55">(optional)</span></span>
                         <input id="date" name="date" type="text" placeholder="DD/MM/YYYY" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" />
                     </label>
                 </div>
                 <label class="grid gap-2">
-                    <span class="text-sm font-bold text-brand-ink">Theme or venue notes</span>
-                    <textarea id="message" name="message" rows="5" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none"></textarea>
+                    <span class="text-sm font-bold text-brand-ink">Anything we should know? <span class="font-normal text-brand-ink/55">(optional)</span></span>
+                    <textarea id="message" name="message" rows="4" class="rounded-xl border border-brand-deepGold/20 bg-white px-4 py-3 outline-none" placeholder="Venue, theme, colours or anything you already have in mind."></textarea>
                 </label>
                 <input id="quoteField" type="hidden" name="estimate" />
                 <button type="submit" class="btn btn-primary w-full">
                     <span class="material-icons text-base" aria-hidden="true">send</span>
-                    Request Consultation
+                    Get My Free Quote
                 </button>
-                <div id="successMessage" data-success-message class="hidden rounded-2xl border border-brand-gold/40 bg-white p-6 text-center">
+                <p class="form-assurance justify-center">
+                    <span><span class="material-icons" aria-hidden="true">verified</span>Free, no-obligation quote</span>
+                    <span><span class="material-icons" aria-hidden="true">lock</span>Your number stays private</span>
+                </p>
+                <div id="successMessage" data-success-message class="hidden rounded-2xl border border-brand-gold/40 bg-white p-6 text-center" role="status">
                     <span class="material-icons text-4xl text-brand-deepGold" aria-hidden="true">check_circle</span>
-                    <p class="mt-2 font-display text-2xl">Thank you</p>
-                    <p class="mt-1 text-sm text-brand-ink/65">We will be in touch shortly.</p>
+                    <p class="mt-2 font-display text-2xl" data-success-title>Thank you!</p>
+                    <p class="mt-1 text-sm text-brand-ink/65">Your request is with us. We'll reach out soon with ideas and your free quote.</p>
+                    <a class="btn btn-whatsapp mt-4" data-success-whatsapp href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I%20just%20requested%20a%20free%20quote%20on%20your%20website." target="_blank" rel="noopener">
+                        <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                        Chat now on WhatsApp
+                    </a>
+                </div>
+                <div data-error-message class="hidden rounded-2xl border border-brand-red/30 bg-white p-5 text-center" role="alert">
+                    <p class="font-bold text-brand-red">We couldn't send your request just now.</p>
+                    <p class="mt-1 text-sm text-brand-ink/70">Please try again, or reach us directly:</p>
+                    <div class="mt-3 flex flex-wrap justify-center gap-2">
+                        <a class="btn btn-whatsapp" href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I'd%20like%20a%20free%20quote%20for%20my%20event." target="_blank" rel="noopener">
+                            <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                            WhatsApp
+                        </a>
+                        <a class="btn border border-brand-deepGold/30 text-brand-ink" href="tel:+919177900385">
+                            <span class="material-icons text-base" aria-hidden="true">call</span>
+                            Call us
+                        </a>
+                    </div>
                 </div>
             </form>
+        </div>
+    </aside>
+
+    <a class="whatsapp-fab" href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I'd%20like%20a%20free%20quote%20for%20my%20event." target="_blank" rel="noopener" aria-label="Chat with Shubham Events on WhatsApp">
+        <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+    </a>
+
+    <div class="mobile-action-bar" role="group" aria-label="Quick contact">
+        <a class="action-whatsapp" href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I'd%20like%20a%20free%20quote%20for%20my%20event." target="_blank" rel="noopener">
+            <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+            WhatsApp
+        </a>
+        <a href="tel:+919177900385">
+            <span class="material-icons" aria-hidden="true">call</span>
+            Call
+        </a>
+        <button type="button" class="action-quote" data-open-drawer>
+            <span class="material-icons" aria-hidden="true">request_quote</span>
+            Free Quote
+        </button>
+    </div>
+
+    <aside id="quotePrompt" class="quote-prompt dark" role="dialog" aria-modal="false" aria-labelledby="quotePromptTitle" aria-describedby="quotePromptText">
+        <button type="button" class="quote-prompt-close" data-close-prompt aria-label="Close">
+            <span class="material-icons" aria-hidden="true">close</span>
+        </button>
+        <p class="section-kicker">Free quote</p>
+        <h2 id="quotePromptTitle" class="quote-prompt-title">Planning a celebration?</h2>
+        <p id="quotePromptText" class="quote-prompt-text">Share your date and we'll send decor ideas with a free, no-obligation quote.</p>
+        <div class="quote-prompt-actions">
+            <a id="quotePromptWhatsApp" class="btn btn-whatsapp" href="https://wa.me/919177900385?text=Hi%20Shubham%20Events!%20I'd%20like%20a%20free%20quote%20for%20my%20event." target="_blank" rel="noopener">
+                <svg class="wa-icon" aria-hidden="true"><use href="#icon-whatsapp"></use></svg>
+                WhatsApp
+            </a>
+            <button id="quotePromptQuote" type="button" class="btn btn-primary">Get free quote</button>
         </div>
     </aside>
 
@@ -2681,6 +3099,10 @@
                 });
             });
 
+            const WHATSAPP_NUMBER = '919177900385';
+            const DEFAULT_WHATSAPP_MESSAGE = "Hi Shubham Events! I'd like a free quote for my event.";
+            const whatsappUrl = (message) => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
             const lightbox = document.getElementById('lightbox');
             const lightboxImg = document.getElementById('lightboxImg');
             const lightboxCaption = document.getElementById('lightboxCaption');
@@ -2693,6 +3115,8 @@
             const galleryImageShell = document.getElementById('galleryImageShell');
             const galleryImageError = document.getElementById('galleryImageError');
             const galleryStatus = document.getElementById('galleryStatus');
+            const galleryQuote = document.getElementById('galleryQuote');
+            const galleryWhatsApp = document.getElementById('galleryWhatsApp');
             const SKELETON_DELAY = 180;
 
             function resetImageShell(shell) {
@@ -2807,6 +3231,9 @@
             };
             let activeGallery = [];
             let activeGalleryTitle = '';
+            let activeGalleryKey = '';
+            let galleryOpenedAt = 0;
+            const galleryEventTypes = { weddings: 'Wedding', birthdays: 'Birthday', conferences: 'Conference', housewarming: 'Housewarming', puja: 'Puja', custom: 'Custom Event' };
             let activeImageIndex = 0;
             let galleryImageToken = 0;
 
@@ -2848,8 +3275,15 @@
             function setGalleryImages(images, title) {
                 activeGallery = images || [];
                 activeGalleryTitle = title || 'Gallery';
+                galleryWhatsApp.href = whatsappUrl(`Hi Shubham Events! I saw your ${activeGalleryTitle} work on your website and would like a free quote.`);
                 renderThumbnails();
                 showGalleryImage(0);
+            }
+
+            function galleryEventType() {
+                if (/Haldi|Sangeet/.test(activeGalleryTitle)) return 'Haldi / Sangeet';
+                if (/Reception/.test(activeGalleryTitle)) return 'Reception';
+                return galleryEventTypes[activeGalleryKey];
             }
 
             function renderGalleryStages(entry, title) {
@@ -2911,6 +3345,8 @@
                 card.addEventListener('click', () => {
                     const entry = gallerySets[card.dataset.galleryKey] || [];
                     const title = card.dataset.galleryTitle || 'Gallery';
+                    activeGalleryKey = card.dataset.galleryKey;
+                    galleryOpenedAt = performance.now();
                     if (entry.stages) {
                         renderGalleryStages(entry, title);
                     } else {
@@ -2933,8 +3369,20 @@
                 galleryStages.innerHTML = '';
                 thumbStrip.innerHTML = '';
                 galleryStatus.textContent = '';
+                // Someone who browsed a gallery for a while is the warmest lead: offer a quote once they close it.
+                if (performance.now() - galleryOpenedAt > 3500) {
+                    const topic = activeGalleryTitle;
+                    window.setTimeout(() => showQuotePrompt(topic), 700);
+                }
             }
             closeLightbox.addEventListener('click', closePreview);
+            galleryQuote.addEventListener('click', () => {
+                const eventType = galleryEventType();
+                const interest = activeGalleryTitle;
+                visitorEngaged = true;
+                closePreview();
+                openDrawer({ eventType, interest });
+            });
             prevImage.addEventListener('click', () => showGalleryImage(activeImageIndex - 1));
             nextImage.addEventListener('click', () => showGalleryImage(activeImageIndex + 1));
             lightbox.addEventListener('click', (event) => {
@@ -3036,8 +3484,10 @@
                 guestCount.textContent = guests;
                 estimate.textContent = `${formatIndian(low)} - ${formatIndian(high)}`;
                 estimateCopy.textContent = `${type.textContent.trim()} decor for ${guests} guests in ${theme.dataset.value}, including flowers, stage decor, lighting basics and the team needed to bring it together.`;
+                // The estimator is hidden for now, so don't attach its default figure to real enquiries.
+                const plannerVisible = !document.getElementById('planner')?.classList.contains('hidden');
                 quoteFields.forEach((field) => {
-                    field.value = estimate.textContent;
+                    field.value = plannerVisible ? estimate.textContent : '';
                 });
             }
 
@@ -3052,9 +3502,16 @@
             updateEstimate();
 
             const drawer = document.getElementById('bookingDrawer');
+            const drawerEventType = document.getElementById('eventType');
+            const drawerMessage = document.getElementById('message');
             const openDrawerButtons = document.querySelectorAll('[data-open-drawer]');
             const closeDrawerButtons = document.querySelectorAll('[data-close-drawer]');
-            function openDrawer() {
+            function openDrawer({ eventType, interest } = {}) {
+                // Coming from a service or gallery, the form already knows what they were looking at.
+                if (eventType) drawerEventType.value = eventType;
+                if (interest && !drawerMessage.value.trim()) drawerMessage.value = `Interested in: ${interest}`;
+                visitorEngaged = true;
+                hideQuotePrompt();
                 drawer.classList.add('open');
                 drawer.setAttribute('aria-hidden', 'false');
                 document.body.classList.add('drawer-open');
@@ -3065,8 +3522,79 @@
                 drawer.setAttribute('aria-hidden', 'true');
                 document.body.classList.remove('drawer-open');
             }
-            openDrawerButtons.forEach((button) => button.addEventListener('click', openDrawer));
+            openDrawerButtons.forEach((button) => button.addEventListener('click', () => openDrawer({ eventType: button.dataset.eventType })));
             closeDrawerButtons.forEach((button) => button.addEventListener('click', closeDrawer));
+
+            // The WhatsApp button and mobile action bar appear once the hero's own buttons scroll away.
+            const heroActions = document.getElementById('heroActions');
+            if (heroActions && 'IntersectionObserver' in window) {
+                new IntersectionObserver(([entry]) => {
+                    document.body.classList.toggle('show-quick-actions', !entry.isIntersecting);
+                }).observe(heroActions);
+            } else {
+                document.body.classList.add('show-quick-actions');
+            }
+
+            // One gentle nudge per visit: after browsing a gallery, or after half a minute of exploring.
+            // Never while a form or gallery is open, and never once they have called, chatted or opened the form.
+            const quotePrompt = document.getElementById('quotePrompt');
+            const quotePromptTitle = document.getElementById('quotePromptTitle');
+            const quotePromptText = document.getElementById('quotePromptText');
+            const quotePromptWhatsApp = document.getElementById('quotePromptWhatsApp');
+            const QUOTE_PROMPT_KEY = 'shubhamEventsQuotePromptSeen';
+            let visitorEngaged = false;
+            let quotePromptTopic = '';
+            let quotePromptSeen = false;
+            try {
+                quotePromptSeen = sessionStorage.getItem(QUOTE_PROMPT_KEY) === 'true';
+            } catch (error) {
+                // Without storage the prompt still shows at most once per page view.
+            }
+
+            function showQuotePrompt(topic = '') {
+                if (quotePromptSeen || visitorEngaged || drawer.classList.contains('open') || lightbox.classList.contains('open')) return;
+                quotePromptSeen = true;
+                try {
+                    sessionStorage.setItem(QUOTE_PROMPT_KEY, 'true');
+                } catch (error) {
+                    // Ignore storage failures.
+                }
+                quotePromptTopic = topic;
+                quotePromptTitle.textContent = topic ? 'Loved what you saw?' : 'Planning a celebration?';
+                quotePromptText.textContent = topic
+                    ? "Tell us your date and we'll send a free, no-obligation quote for a look like this."
+                    : "Share your date and we'll send decor ideas with a free, no-obligation quote.";
+                quotePromptWhatsApp.href = topic
+                    ? whatsappUrl(`Hi Shubham Events! I loved your ${topic} work and would like a free quote.`)
+                    : whatsappUrl(DEFAULT_WHATSAPP_MESSAGE);
+                quotePrompt.classList.add('is-visible');
+            }
+
+            function hideQuotePrompt() {
+                quotePrompt.classList.remove('is-visible');
+            }
+
+            quotePrompt.querySelector('[data-close-prompt]').addEventListener('click', hideQuotePrompt);
+            document.getElementById('quotePromptQuote').addEventListener('click', () => {
+                openDrawer({ interest: quotePromptTopic || undefined });
+            });
+            document.addEventListener('click', (event) => {
+                if (!event.target.closest?.('a[href^="tel:"], a[href*="wa.me/"]')) return;
+                visitorEngaged = true;
+                hideQuotePrompt();
+            });
+            siteReady.then(() => window.setTimeout(() => {
+                const offerWhileExploring = () => {
+                    if (window.scrollY < window.innerHeight * 0.9) return false;
+                    showQuotePrompt();
+                    return true;
+                };
+                if (offerWhileExploring()) return;
+                const onScroll = () => {
+                    if (offerWhileExploring()) window.removeEventListener('scroll', onScroll);
+                };
+                window.addEventListener('scroll', onScroll, { passive: true });
+            }, 30000));
 
             const storyTrack = document.getElementById('storyTrack');
             const storySlides = storyTrack.querySelectorAll('article');
@@ -3091,6 +3619,7 @@
                 if (event.key === 'Escape') {
                     if (lightbox.classList.contains('open')) closePreview();
                     if (drawer.classList.contains('open')) closeDrawer();
+                    hideQuotePrompt();
                 }
                 if (lightbox.classList.contains('open') && event.key === 'ArrowLeft') showGalleryImage(activeImageIndex - 1);
                 if (lightbox.classList.contains('open') && event.key === 'ArrowRight') showGalleryImage(activeImageIndex + 1);
@@ -3098,6 +3627,9 @@
 
             document.querySelectorAll('[data-consultation-form]').forEach((form) => {
                 const successMessage = form.querySelector('[data-success-message]');
+                const successTitle = form.querySelector('[data-success-title]');
+                const successWhatsApp = form.querySelector('[data-success-whatsapp]');
+                const errorMessage = form.querySelector('[data-error-message]');
                 form.addEventListener('submit', async (event) => {
                     event.preventDefault();
                     if (!form.checkValidity()) {
@@ -3107,21 +3639,33 @@
 
                     const button = form.querySelector('button[type="submit"]');
                     const original = button.innerHTML;
+                    const data = new FormData(form);
                     button.disabled = true;
                     button.innerHTML = '<span class="material-icons text-base" aria-hidden="true">hourglass_top</span> Sending';
+                    successMessage?.classList.add('hidden');
+                    errorMessage?.classList.add('hidden');
+                    visitorEngaged = true;
+                    hideQuotePrompt();
 
                     try {
                         const response = await fetch(form.action, {
                             method: 'POST',
-                            body: new FormData(form),
+                            body: data,
                             headers: { 'Accept': 'application/json' }
                         });
                         if (!response.ok) throw new Error('Form submission failed');
+                        // Keep the conversation going: the thank-you offers WhatsApp with their details already written.
+                        const firstName = String(data.get('name') || '').trim().split(/\s+/)[0];
+                        const details = [data.get('eventType'), data.get('date')].filter(Boolean).join(' on ');
+                        if (successTitle) successTitle.textContent = firstName ? `Thank you, ${firstName}!` : 'Thank you!';
+                        if (successWhatsApp) {
+                            successWhatsApp.href = whatsappUrl(`Hi Shubham Events! I'm ${firstName} and I just requested a free quote on your website${details ? ` for my ${details}` : ''}.`);
+                        }
                         form.reset();
                         successMessage?.classList.remove('hidden');
                         updateEstimate();
                     } catch (error) {
-                        alert('We could not send the enquiry right now. Please call +91 91779 00385.');
+                        errorMessage?.classList.remove('hidden');
                     } finally {
                         button.disabled = false;
                         button.innerHTML = original;
