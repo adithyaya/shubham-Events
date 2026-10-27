@@ -120,7 +120,6 @@
             background: var(--brand-primary);
             color: var(--surface-warm);
             font-family: Inter, sans-serif;
-            cursor: none;
         }
 
         body.drawer-open,
@@ -128,12 +127,19 @@
             overflow: hidden;
         }
 
-        button,
-        a,
-        input,
-        select,
-        textarea {
+        /* With a mouse, the brand cursor is the only pointer; form fields keep the native text cursor. */
+        .has-custom-cursor body,
+        .has-custom-cursor a,
+        .has-custom-cursor button,
+        .has-custom-cursor [role="button"],
+        .has-custom-cursor input[type="range"] {
             cursor: none;
+        }
+
+        .has-custom-cursor input:not([type="range"]),
+        .has-custom-cursor select,
+        .has-custom-cursor textarea {
+            cursor: auto;
         }
 
         img {
@@ -379,9 +385,21 @@
             position: fixed;
             top: 0;
             left: 0;
+            display: none;
             pointer-events: none;
             z-index: 9999;
+            opacity: 0;
             transform: translate(-50%, -50%);
+        }
+
+        .has-custom-cursor .cursor-dot,
+        .has-custom-cursor .cursor-ring {
+            display: block;
+        }
+
+        .cursor-dot.is-visible,
+        .cursor-ring.is-visible {
+            opacity: 1;
         }
 
         .cursor-dot {
@@ -389,6 +407,7 @@
             height: 7px;
             border-radius: 999px;
             background: var(--brand-accent);
+            transition: opacity 180ms ease;
         }
 
         .cursor-ring {
@@ -396,7 +415,7 @@
             height: 34px;
             border-radius: 999px;
             border: 1px solid rgba(214, 168, 75, 0.6);
-            transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background 180ms ease;
+            transition: width 180ms ease, height 180ms ease, border-color 180ms ease, background 180ms ease, opacity 180ms ease;
         }
 
         .cursor-ring.is-active {
@@ -1274,29 +1293,6 @@
                 --section-pad: 4.25rem;
                 --anchor-offset: 12px;
                 --mobile-gutter: clamp(1.4rem, 5.8vw, 2rem);
-            }
-
-            body {
-                cursor: auto;
-            }
-
-            button,
-            a,
-            input,
-            select,
-            textarea {
-                cursor: pointer;
-            }
-
-            input,
-            select,
-            textarea {
-                cursor: text;
-            }
-
-            .cursor-dot,
-            .cursor-ring {
-                display: none;
             }
 
             .site-nav {
@@ -2635,16 +2631,40 @@
 
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorRing = document.querySelector('.cursor-ring');
-            if (cursorDot && cursorRing && window.matchMedia('(min-width: 841px)').matches) {
-                window.addEventListener('pointermove', (event) => {
+            const customCursorQuery = window.matchMedia('(hover: hover) and (pointer: fine) and (min-width: 841px)');
+            if (cursorDot && cursorRing) {
+                // Delegated, so controls added later (gallery thumbnails and tabs) react like the rest.
+                const clickableSelector = 'a[href], button:not(:disabled), [role="button"], input[type="range"]:not(:disabled)';
+                const fieldSelector = 'input:not([type="range"]), select, textarea';
+                const setCursorVisible = (visible) => {
+                    cursorDot.classList.toggle('is-visible', visible);
+                    cursorRing.classList.toggle('is-visible', visible);
+                };
+                const followPointer = (event) => {
                     cursorDot.style.left = `${event.clientX}px`;
                     cursorDot.style.top = `${event.clientY}px`;
                     cursorRing.style.left = `${event.clientX}px`;
                     cursorRing.style.top = `${event.clientY}px`;
+                };
+                const syncCustomCursor = () => {
+                    document.documentElement.classList.toggle('has-custom-cursor', customCursorQuery.matches);
+                    if (!customCursorQuery.matches) setCursorVisible(false);
+                };
+
+                syncCustomCursor();
+                customCursorQuery.addEventListener('change', syncCustomCursor);
+                document.addEventListener('pointerover', (event) => {
+                    if (event.pointerType !== 'mouse' || !customCursorQuery.matches) return;
+                    const target = event.target instanceof Element ? event.target : null;
+                    followPointer(event);
+                    cursorRing.classList.toggle('is-active', Boolean(target?.closest(clickableSelector)));
+                    setCursorVisible(!target?.closest(fieldSelector));
                 });
-                document.querySelectorAll('a, button, input, select, textarea').forEach((el) => {
-                    el.addEventListener('pointerenter', () => cursorRing.classList.add('is-active'));
-                    el.addEventListener('pointerleave', () => cursorRing.classList.remove('is-active'));
+                window.addEventListener('pointermove', (event) => {
+                    if (event.pointerType === 'mouse') followPointer(event);
+                });
+                document.addEventListener('pointerout', (event) => {
+                    if (!event.relatedTarget) setCursorVisible(false);
                 });
             }
 
