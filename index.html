@@ -25,6 +25,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 
+    <script>
+        // Decide before the first paint whether this view opens with the loader, so it can never appear after the site.
+        try {
+            if (sessionStorage.getItem('shubhamEventsIntroSeenV3') === 'true') {
+                document.documentElement.classList.add('skip-intro');
+            } else {
+                sessionStorage.setItem('shubhamEventsIntroSeenV3', 'true');
+            }
+        } catch (error) {
+            document.documentElement.classList.add('skip-intro');
+        }
+    </script>
+    <noscript>
+        <style>
+            .site-loader {
+                display: none !important;
+            }
+        </style>
+    </noscript>
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -155,25 +175,30 @@
             z-index: 10000;
             display: grid;
             place-items: center;
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
             background:
                 radial-gradient(circle at 50% 46%, rgba(214, 168, 75, 0.12), transparent 32%),
                 var(--brand-primary);
+            cursor: default;
             transition: opacity 420ms ease, visibility 420ms ease;
-        }
-
-        .site-loader.is-active {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
+            /* Safety net: the loader must never trap the page if a script fails. */
+            animation: loaderFailsafe 420ms ease 6s forwards;
         }
 
         .site-loader.is-hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+        }
+
+        .skip-intro .site-loader {
+            display: none;
+        }
+
+        @keyframes loaderFailsafe {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
         }
 
         .loader-mark {
@@ -496,6 +521,11 @@
             transform: scale(1);
         }
 
+        .hero-bg img.is-pending {
+            opacity: 0;
+            transition: none;
+        }
+
         .hero::before {
             content: "";
             position: absolute;
@@ -660,6 +690,23 @@
             max-width: calc(100% - 2rem);
             white-space: normal;
             overflow-wrap: anywhere;
+        }
+
+        .showcase-card.is-featured {
+            grid-column: 1 / -1;
+        }
+
+        .showcase-card.is-featured .shade {
+            background:
+                linear-gradient(90deg, rgba(16, 8, 6, 0.62), transparent 62%),
+                linear-gradient(0deg, rgba(16, 8, 6, 0.92), rgba(16, 8, 6, 0.12) 70%);
+        }
+
+        @media (min-width: 841px) {
+            .showcase-card.is-featured {
+                aspect-ratio: 8 / 3;
+                min-height: clamp(300px, 30vw, 440px);
+            }
         }
 
         #showcaseGrid {
@@ -1686,7 +1733,7 @@
 <body>
     <div id="siteLoader" class="site-loader" role="status" aria-live="polite" aria-label="Loading Shubham Events">
         <div class="loader-mark">
-            <img src="images/logo/logo.png?v=2" alt="" width="520" height="520" />
+            <img src="images/logo/logo.png?v=2" alt="" width="520" height="520" fetchpriority="high" />
             <span class="loader-line" aria-hidden="true"></span>
         </div>
     </div>
@@ -1742,11 +1789,11 @@
     <main id="home">
         <section class="hero dark" aria-label="Shubham Events hero">
             <div class="hero-bg" aria-hidden="true">
-                <img src="images/hero/hero-1.jpg?v=34" alt="" class="active" />
-                <img src="images/hero/hero-2.jpg?v=34" alt="" />
-                <img src="images/hero/hero-3.jpg?v=34" alt="" />
-                <img src="images/hero/hero-4.jpg?v=34" alt="" />
-                <img src="images/hero/hero-5.jpg?v=34" alt="" />
+                <img src="images/hero/hero-1.jpg?v=34" alt="" class="active" fetchpriority="high" />
+                <img data-src="images/hero/hero-2.jpg?v=34" alt="" fetchpriority="low" />
+                <img data-src="images/hero/hero-3.jpg?v=34" alt="" fetchpriority="low" />
+                <img data-src="images/hero/hero-4.jpg?v=34" alt="" fetchpriority="low" />
+                <img data-src="images/hero/hero-5.jpg?v=34" alt="" fetchpriority="low" />
             </div>
 
             <div class="container hero-panel">
@@ -1846,6 +1893,15 @@
                 </div>
 
                 <div class="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3" id="showcaseGrid">
+                    <button class="showcase-card is-featured" data-category="wedding custom" data-gallery-key="sheeshMahal" data-gallery-title="Sheesh Mahal Theme">
+                        <img src="images/gallery/sheesh-mahal/sheesh-mahal-01.jpg?v=34" alt="Two-storey white palace stage with carved arches and chandeliers, lit up at night" loading="lazy" />
+                        <span class="shade" aria-hidden="true"></span>
+                        <span class="absolute right-5 top-5 rounded-full bg-brand-gold px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-primary">Signature Theme</span>
+                        <span class="absolute bottom-0 p-7 text-left md:p-9">
+                            <span class="font-display text-3xl text-white md:text-5xl">Sheesh Mahal</span>
+                            <span class="mt-2 block max-w-xl text-sm leading-6 text-white/76 md:text-base">Mirror-work stages, jharokha gateways and sculpted mirror decor, styled like a royal palace.</span>
+                        </span>
+                    </button>
                     <button class="showcase-card" data-category="wedding" data-gallery-key="weddings" data-gallery-title="Weddings">
                         <img src="images/cards/weddings.jpg?v=3" alt="Gold wedding mandap and floral stage" loading="lazy" />
                         <span class="shade" aria-hidden="true"></span>
@@ -1931,10 +1987,10 @@
                         <button id="retryBeforeAfter" type="button" class="btn btn-primary">Retry</button>
                     </div>
                     <div class="ba-layer">
-                        <img src="images/gallery/housewarming/before.png?v=35" alt="Housewarming venue entrance before decoration" />
+                        <img src="images/gallery/housewarming/before.png?v=35" alt="Housewarming venue entrance before decoration" loading="lazy" />
                     </div>
                     <div class="ba-layer ba-after">
-                        <img src="images/gallery/housewarming/after.jpg?v=34" alt="Housewarming entrance after decoration with marigold arch, yellow drapes and floral rangoli" />
+                        <img src="images/gallery/housewarming/after.jpg?v=34" alt="Housewarming entrance after decoration with marigold arch, yellow drapes and floral rangoli" loading="lazy" />
                     </div>
                     <span class="ba-handle" aria-hidden="true"></span>
                     <input class="ba-range" type="range" min="12" max="88" value="20" aria-label="Compare venue transformation" tabindex="-1" disabled />
@@ -2332,33 +2388,38 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const hasSeenIntroReveal = document.documentElement.classList.contains('skip-intro');
             const siteLoader = document.getElementById('siteLoader');
-            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-            const isLikelySlowConnection = Boolean(connection?.saveData || /(^2g|slow-2g|3g)/i.test(connection?.effectiveType || ''));
-            let pageLoaded = document.readyState === 'complete';
-            let loaderTimer = 0;
+            const heroImage = document.querySelector('.hero-bg img.active');
+            const LOADER_MIN_MS = 700;
+            const LOADER_MAX_WAIT_MS = 2500;
+            let siteReady = Promise.resolve();
+            let heroDecoded = false;
+            const heroReady = !heroImage || (heroImage.complete && !heroImage.naturalWidth)
+                ? Promise.resolve()
+                : decodeImageElement(heroImage).then(() => { heroDecoded = true; }).catch(() => {});
 
-            function hideSiteLoader() {
-                siteLoader?.classList.add('is-hidden');
-                window.setTimeout(() => siteLoader?.remove(), 520);
-            }
-
-            if (prefersReducedMotion || pageLoaded) {
+            // The loader is part of the first paint and only ever lifts. It waits for what the first
+            // screen needs (fonts, icons, the first hero slide), not for every image on the page.
+            if (prefersReducedMotion || hasSeenIntroReveal) {
                 siteLoader?.remove();
-            } else {
-                loaderTimer = window.setTimeout(() => {
-                    if (!pageLoaded) siteLoader?.classList.add('is-active');
-                }, isLikelySlowConnection ? 180 : 650);
+            } else if (siteLoader) {
+                const fontsReady = document.fonts
+                    ? Promise.all(['1em Cinzel', '1em Samarkan', '400 1em Inter', '700 1em Inter', '24px "Material Icons"']
+                        .map((font) => document.fonts.load(font))).catch(() => {})
+                    : Promise.resolve();
+                const minShown = new Promise((resolve) => window.setTimeout(resolve, Math.max(0, LOADER_MIN_MS - performance.now())));
+                const maxWait = new Promise((resolve) => window.setTimeout(resolve, LOADER_MAX_WAIT_MS));
 
-                window.addEventListener('load', () => window.setTimeout(hideSiteLoader, 260), { once: true });
-                window.addEventListener('load', () => {
-                    pageLoaded = true;
-                    window.clearTimeout(loaderTimer);
-                }, { once: true });
-                window.setTimeout(() => {
-                    pageLoaded = true;
-                    hideSiteLoader();
-                }, 4500);
+                siteReady = Promise.race([Promise.all([heroReady, fontsReady, minShown]), maxWait]).then(() => {
+                    if (heroImage && !heroDecoded) {
+                        // On slow networks, fade the first slide in once it arrives instead of painting it in strips.
+                        heroImage.classList.add('is-pending');
+                        heroReady.then(() => heroImage.classList.remove('is-pending'));
+                    }
+                    siteLoader.classList.add('is-hidden');
+                    window.setTimeout(() => siteLoader.remove(), 520);
+                });
             }
 
             document.querySelectorAll('main img').forEach((img) => {
@@ -2380,14 +2441,6 @@
                     }, { once: true });
                 }
             });
-
-            const introRevealKey = 'shubhamEventsSiteRevealSeenV2';
-            let hasSeenIntroReveal = false;
-            try {
-                hasSeenIntroReveal = sessionStorage.getItem(introRevealKey) === 'true';
-            } catch (error) {
-                hasSeenIntroReveal = true;
-            }
 
             const revealSelectors = [
                 '.hero .reveal',
@@ -2437,12 +2490,7 @@
                     });
                 }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
 
-                revealElements.forEach((element) => revealObserver.observe(element));
-                try {
-                    sessionStorage.setItem(introRevealKey, 'true');
-                } catch (error) {
-                    // Ignore storage failures and keep the page visible.
-                }
+                siteReady.then(() => revealElements.forEach((element) => revealObserver.observe(element)));
             }
 
             const menuBtn = document.getElementById('menuBtn');
@@ -2567,12 +2615,21 @@
 
             const slides = document.querySelectorAll('.hero-bg img');
             let activeSlide = 0;
+            // Later slides start downloading only after the first one, so they never slow down the opening screen.
+            heroReady.then(() => slides.forEach((slide) => {
+                if (slide.dataset.src) slide.src = slide.dataset.src;
+            }));
             if (!prefersReducedMotion && slides.length > 1) {
-                setInterval(() => {
+                siteReady.then(() => setInterval(() => {
+                    // Only move on to a slide that has finished downloading, so slow connections never show half-painted photos.
+                    const isReady = (slide) => slide.complete && slide.naturalWidth > 0;
+                    let next = (activeSlide + 1) % slides.length;
+                    while (next !== activeSlide && !isReady(slides[next])) next = (next + 1) % slides.length;
+                    if (next === activeSlide) return;
                     slides[activeSlide].classList.remove('active');
-                    activeSlide = (activeSlide + 1) % slides.length;
+                    activeSlide = next;
                     slides[activeSlide].classList.add('active');
-                }, 5200);
+                }, 5200));
             }
 
             const cursorDot = document.querySelector('.cursor-dot');
@@ -2697,6 +2754,7 @@
             const localImages = (folder, prefix, count) =>
                 Array.from({ length: count }, (_, index) => `images/gallery/${folder}/${prefix}-${String(index + 1).padStart(2, '0')}.jpg?v=34`);
             const gallerySets = {
+                sheeshMahal: localImages('sheesh-mahal', 'sheesh-mahal', 8),
                 weddings: {
                     stages: {
                         'Haldi': localImages('weddings/haldi', 'haldi', 15),
@@ -2719,6 +2777,7 @@
                     ...localImages('housewarming', 'housewarming', 13).slice(1),
                 ],
                 custom: [
+                    ...localImages('custom', 'custom', 1),
                     'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=1200&auto=format&fit=crop',
                     'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1200&auto=format&fit=crop',
                     'https://i.pinimg.com/736x/5b/e7/35/5be735a3514c4e5524debab9dc9da2d9.jpg',
